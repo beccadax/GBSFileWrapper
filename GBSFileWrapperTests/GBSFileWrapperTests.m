@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "GBSFileWrapper.h"
 
 @interface GBSFileWrapperTests : XCTestCase
 
@@ -25,8 +26,21 @@
 }
 
 - (void)testExample {
-    xct
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSData * data = [@"example" dataUsingEncoding:NSUTF8StringEncoding];
+        
+    GBSFileWrapper * wrapper = [[GBSFileWrapper alloc] initWithContents:data resourceValues:@{ NSURLFileSecurityKey: [[NSFileSecurity alloc] initWithPOSIXMode:0644] }];
+    
+    XCTAssertEqual(wrapper.type, GBSFileWrapperTypeRegularFile, @"GBSFileWrapper with NSData contents is a regualr file");
+    
+    XCTAssertEqualObjects(wrapper.contents, data, @"GBSFileWrapper preserves contents correctly");
+    
+    NSFileSecurity * security;
+    XCTAssertTrue([wrapper getResourceValue:&security forKey:NSURLFileSecurityKey error:NULL], @"Fetched security object successfully");
+    XCTAssertNotNil(wrapper, @"Actually got a security object");
+    
+    mode_t mode;
+    XCTAssertTrue([security getPOSIXMode:&mode], @"Can get POSIX mode");
+    XCTAssertEqual(mode, (mode_t)0644, @"POSIX mode is correct");
 }
 
 @end
