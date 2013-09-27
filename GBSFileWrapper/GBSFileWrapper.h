@@ -28,3 +28,6 @@
 
 #import "GBSFileWrapperDataSource.h"
 #import "GBSFileWrapperContents.h"
+#import "GBSFileWrapper+Memory.h"
+#import "GBSFileWrapper+NSFileWrapper.h"
+#import "GBSFileWrapper+URL.h"
