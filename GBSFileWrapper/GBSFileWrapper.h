@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "GBSFileWrapperDefines.h"
+#import "NSFileSecurity+GBSExtensions.h"
 
 @interface GBSFileWrapper : NSObject
 
