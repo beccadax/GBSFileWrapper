@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84FD4D5217F4EF9900EFC2D3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FD4D5117F4EF9900EFC2D3 /* Cocoa.framework */; };
+		84FD4D5C17F4EF9900EFC2D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84FD4D5A17F4EF9900EFC2D3 /* InfoPlist.strings */; };
+		84FD4D6017F4EF9900EFC2D3 /* GBSFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D5F17F4EF9900EFC2D3 /* GBSFileWrapper.m */; };
+		84FD4D6717F4EF9900EFC2D3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FD4D6617F4EF9900EFC2D3 /* XCTest.framework */; };
+		84FD4D6817F4EF9900EFC2D3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FD4D5117F4EF9900EFC2D3 /* Cocoa.framework */; };
+		84FD4D6B17F4EF9900EFC2D3 /* GBSFileWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FD4D4E17F4EF9900EFC2D3 /* GBSFileWrapper.framework */; };
+		84FD4D7117F4EF9900EFC2D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84FD4D6F17F4EF9900EFC2D3 /* InfoPlist.strings */; };
+		84FD4D7317F4EF9900EFC2D3 /* GBSFileWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D7217F4EF9900EFC2D3 /* GBSFileWrapperTests.m */; };
+		84FD4D8717F4F3BB00EFC2D3 /* GBSFileWrapperDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D8517F4F09800EFC2D3 /* GBSFileWrapperDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84FD4D8817F4F3C100EFC2D3 /* GBSFileWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D5E17F4EF9900EFC2D3 /* GBSFileWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84FD4D8917F4F3C800EFC2D3 /* GBSFileWrapperDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D8617F4F0C000EFC2D3 /* GBSFileWrapperDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84FD4D8E17F4F4E400EFC2D3 /* GBSFileWrapperContents.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D8C17F4F4E400EFC2D3 /* GBSFileWrapperContents.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84FD4D8F17F4F4E400EFC2D3 /* GBSFileWrapperContents.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D8D17F4F4E400EFC2D3 /* GBSFileWrapperContents.m */; };
+		84FD4D9217F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9017F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h */; };
+		84FD4D9317F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D9117F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.m */; };
+		84FD4D9617F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9417F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h */; };
+		84FD4D9717F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D9517F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.m */; };
+		84FD4D9A17F5451800EFC2D3 /* GBSFileWrapper+URL.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9817F5451800EFC2D3 /* GBSFileWrapper+URL.h */; };
+		84FD4D9B17F5451800EFC2D3 /* GBSFileWrapper+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D9917F5451800EFC2D3 /* GBSFileWrapper+URL.m */; };
+		84FD4D9E17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9C17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h */; };
+		84FD4D9F17F54B2800EFC2D3 /* GBSFileWrapper+Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D9D17F54B2800EFC2D3 /* GBSFileWrapper+Memory.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84FD4D6917F4EF9900EFC2D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84FD4D4517F4EF9900EFC2D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84FD4D4D17F4EF9900EFC2D3;
+			remoteInfo = GBSFileWrapper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		84FD4D4E17F4EF9900EFC2D3 /* GBSFileWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GBSFileWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84FD4D5117F4EF9900EFC2D3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		84FD4D5417F4EF9900EFC2D3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		84FD4D5517F4EF9900EFC2D3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		84FD4D5617F4EF9900EFC2D3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		84FD4D5917F4EF9900EFC2D3 /* GBSFileWrapper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GBSFileWrapper-Info.plist"; sourceTree = "<group>"; };
+		84FD4D5B17F4EF9900EFC2D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		84FD4D5D17F4EF9900EFC2D3 /* GBSFileWrapper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBSFileWrapper-Prefix.pch"; sourceTree = "<group>"; };
+		84FD4D5E17F4EF9900EFC2D3 /* GBSFileWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBSFileWrapper.h; sourceTree = "<group>"; };
+		84FD4D5F17F4EF9900EFC2D3 /* GBSFileWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GBSFileWrapper.m; sourceTree = "<group>"; };
+		84FD4D6517F4EF9900EFC2D3 /* GBSFileWrapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GBSFileWrapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84FD4D6617F4EF9900EFC2D3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		84FD4D6E17F4EF9900EFC2D3 /* GBSFileWrapperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GBSFileWrapperTests-Info.plist"; sourceTree = "<group>"; };
+		84FD4D7017F4EF9900EFC2D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		84FD4D7217F4EF9900EFC2D3 /* GBSFileWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GBSFileWrapperTests.m; sourceTree = "<group>"; };
+		84FD4D8517F4F09800EFC2D3 /* GBSFileWrapperDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBSFileWrapperDataSource.h; sourceTree = "<group>"; };
+		84FD4D8617F4F0C000EFC2D3 /* GBSFileWrapperDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBSFileWrapperDefines.h; sourceTree = "<group>"; };
+		84FD4D8C17F4F4E400EFC2D3 /* GBSFileWrapperContents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBSFileWrapperContents.h; sourceTree = "<group>"; };
+		84FD4D8D17F4F4E400EFC2D3 /* GBSFileWrapperContents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSFileWrapperContents.m; sourceTree = "<group>"; };
+		84FD4D9017F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GBSFileWrapper+NSFileWrapper.h"; sourceTree = "<group>"; };
+		84FD4D9117F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GBSFileWrapper+NSFileWrapper.m"; sourceTree = "<group>"; };
+		84FD4D9417F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileSecurity+GBSExtensions.h"; sourceTree = "<group>"; };
+		84FD4D9517F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileSecurity+GBSExtensions.m"; sourceTree = "<group>"; };
+		84FD4D9817F5451800EFC2D3 /* GBSFileWrapper+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GBSFileWrapper+URL.h"; sourceTree = "<group>"; };
+		84FD4D9917F5451800EFC2D3 /* GBSFileWrapper+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GBSFileWrapper+URL.m"; sourceTree = "<group>"; };
+		84FD4D9C17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GBSFileWrapper+Memory.h"; sourceTree = "<group>"; };
+		84FD4D9D17F54B2800EFC2D3 /* GBSFileWrapper+Memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GBSFileWrapper+Memory.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84FD4D4A17F4EF9900EFC2D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FD4D5217F4EF9900EFC2D3 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84FD4D6217F4EF9900EFC2D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FD4D6B17F4EF9900EFC2D3 /* GBSFileWrapper.framework in Frameworks */,
+				84FD4D6817F4EF9900EFC2D3 /* Cocoa.framework in Frameworks */,
+				84FD4D6717F4EF9900EFC2D3 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		84FD4D4417F4EF9900EFC2D3 = {
+			isa = PBXGroup;
+			children = (
+				84FD4D5717F4EF9900EFC2D3 /* GBSFileWrapper */,
+				84FD4D6C17F4EF9900EFC2D3 /* GBSFileWrapperTests */,
+				84FD4D5017F4EF9900EFC2D3 /* Frameworks */,
+				84FD4D4F17F4EF9900EFC2D3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		84FD4D4F17F4EF9900EFC2D3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84FD4D4E17F4EF9900EFC2D3 /* GBSFileWrapper.framework */,
+				84FD4D6517F4EF9900EFC2D3 /* GBSFileWrapperTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84FD4D5017F4EF9900EFC2D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84FD4D5117F4EF9900EFC2D3 /* Cocoa.framework */,
+				84FD4D6617F4EF9900EFC2D3 /* XCTest.framework */,
+				84FD4D5317F4EF9900EFC2D3 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84FD4D5317F4EF9900EFC2D3 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84FD4D5417F4EF9900EFC2D3 /* Foundation.framework */,
+				84FD4D5517F4EF9900EFC2D3 /* CoreData.framework */,
+				84FD4D5617F4EF9900EFC2D3 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		84FD4D5717F4EF9900EFC2D3 /* GBSFileWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				84FD4D8617F4F0C000EFC2D3 /* GBSFileWrapperDefines.h */,
+				84FD4D5E17F4EF9900EFC2D3 /* GBSFileWrapper.h */,
+				84FD4D5F17F4EF9900EFC2D3 /* GBSFileWrapper.m */,
+				84FD4D8517F4F09800EFC2D3 /* GBSFileWrapperDataSource.h */,
+				84FD4D8C17F4F4E400EFC2D3 /* GBSFileWrapperContents.h */,
+				84FD4D8D17F4F4E400EFC2D3 /* GBSFileWrapperContents.m */,
+				84FD4D9017F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h */,
+				84FD4D9117F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.m */,
+				84FD4D9817F5451800EFC2D3 /* GBSFileWrapper+URL.h */,
+				84FD4D9917F5451800EFC2D3 /* GBSFileWrapper+URL.m */,
+				84FD4D9C17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h */,
+				84FD4D9D17F54B2800EFC2D3 /* GBSFileWrapper+Memory.m */,
+				84FD4D5817F4EF9900EFC2D3 /* Supporting Files */,
+				84FD4D9417F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h */,
+				84FD4D9517F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.m */,
+			);
+			path = GBSFileWrapper;
+			sourceTree = "<group>";
+		};
+		84FD4D5817F4EF9900EFC2D3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				84FD4D5917F4EF9900EFC2D3 /* GBSFileWrapper-Info.plist */,
+				84FD4D5A17F4EF9900EFC2D3 /* InfoPlist.strings */,
+				84FD4D5D17F4EF9900EFC2D3 /* GBSFileWrapper-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84FD4D6C17F4EF9900EFC2D3 /* GBSFileWrapperTests */ = {
+			isa = PBXGroup;
+			children = (
+				84FD4D7217F4EF9900EFC2D3 /* GBSFileWrapperTests.m */,
+				84FD4D6D17F4EF9900EFC2D3 /* Supporting Files */,
+			);
+			path = GBSFileWrapperTests;
+			sourceTree = "<group>";
+		};
+		84FD4D6D17F4EF9900EFC2D3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				84FD4D6E17F4EF9900EFC2D3 /* GBSFileWrapperTests-Info.plist */,
+				84FD4D6F17F4EF9900EFC2D3 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		84FD4D4B17F4EF9900EFC2D3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FD4D9A17F5451800EFC2D3 /* GBSFileWrapper+URL.h in Headers */,
+				84FD4D8717F4F3BB00EFC2D3 /* GBSFileWrapperDataSource.h in Headers */,
+				84FD4D9217F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h in Headers */,
+				84FD4D9617F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h in Headers */,
+				84FD4D8817F4F3C100EFC2D3 /* GBSFileWrapper.h in Headers */,
+				84FD4D8E17F4F4E400EFC2D3 /* GBSFileWrapperContents.h in Headers */,
+				84FD4D9E17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h in Headers */,
+				84FD4D8917F4F3C800EFC2D3 /* GBSFileWrapperDefines.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		84FD4D4D17F4EF9900EFC2D3 /* GBSFileWrapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84FD4D7617F4EF9900EFC2D3 /* Build configuration list for PBXNativeTarget "GBSFileWrapper" */;
+			buildPhases = (
+				84FD4D4917F4EF9900EFC2D3 /* Sources */,
+				84FD4D4A17F4EF9900EFC2D3 /* Frameworks */,
+				84FD4D4B17F4EF9900EFC2D3 /* Headers */,
+				84FD4D4C17F4EF9900EFC2D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GBSFileWrapper;
+			productName = GBSFileWrapper;
+			productReference = 84FD4D4E17F4EF9900EFC2D3 /* GBSFileWrapper.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		84FD4D6417F4EF9900EFC2D3 /* GBSFileWrapperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84FD4D7917F4EF9900EFC2D3 /* Build configuration list for PBXNativeTarget "GBSFileWrapperTests" */;
+			buildPhases = (
+				84FD4D6117F4EF9900EFC2D3 /* Sources */,
+				84FD4D6217F4EF9900EFC2D3 /* Frameworks */,
+				84FD4D6317F4EF9900EFC2D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84FD4D6A17F4EF9900EFC2D3 /* PBXTargetDependency */,
+			);
+			name = GBSFileWrapperTests;
+			productName = GBSFileWrapperTests;
+			productReference = 84FD4D6517F4EF9900EFC2D3 /* GBSFileWrapperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84FD4D4517F4EF9900EFC2D3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Groundbreaking Software";
+				TargetAttributes = {
+					84FD4D6417F4EF9900EFC2D3 = {
+						TestTargetID = 84FD4D4D17F4EF9900EFC2D3;
+					};
+				};
+			};
+			buildConfigurationList = 84FD4D4817F4EF9900EFC2D3 /* Build configuration list for PBXProject "GBSFileWrapper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 84FD4D4417F4EF9900EFC2D3;
+			productRefGroup = 84FD4D4F17F4EF9900EFC2D3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84FD4D4D17F4EF9900EFC2D3 /* GBSFileWrapper */,
+				84FD4D6417F4EF9900EFC2D3 /* GBSFileWrapperTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84FD4D4C17F4EF9900EFC2D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FD4D5C17F4EF9900EFC2D3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84FD4D6317F4EF9900EFC2D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FD4D7117F4EF9900EFC2D3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84FD4D4917F4EF9900EFC2D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FD4D9B17F5451800EFC2D3 /* GBSFileWrapper+URL.m in Sources */,
+				84FD4D9F17F54B2800EFC2D3 /* GBSFileWrapper+Memory.m in Sources */,
+				84FD4D8F17F4F4E400EFC2D3 /* GBSFileWrapperContents.m in Sources */,
+				84FD4D9717F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.m in Sources */,
+				84FD4D6017F4EF9900EFC2D3 /* GBSFileWrapper.m in Sources */,
+				84FD4D9317F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84FD4D6117F4EF9900EFC2D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FD4D7317F4EF9900EFC2D3 /* GBSFileWrapperTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84FD4D6A17F4EF9900EFC2D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84FD4D4D17F4EF9900EFC2D3 /* GBSFileWrapper */;
+			targetProxy = 84FD4D6917F4EF9900EFC2D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		84FD4D5A17F4EF9900EFC2D3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84FD4D5B17F4EF9900EFC2D3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		84FD4D6F17F4EF9900EFC2D3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84FD4D7017F4EF9900EFC2D3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		84FD4D7417F4EF9900EFC2D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		84FD4D7517F4EF9900EFC2D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		84FD4D7717F4EF9900EFC2D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GBSFileWrapper/GBSFileWrapper-Prefix.pch";
+				INFOPLIST_FILE = "GBSFileWrapper/GBSFileWrapper-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		84FD4D7817F4EF9900EFC2D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GBSFileWrapper/GBSFileWrapper-Prefix.pch";
+				INFOPLIST_FILE = "GBSFileWrapper/GBSFileWrapper-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		84FD4D7A17F4EF9900EFC2D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GBSFileWrapper.framework/Versions/A/GBSFileWrapper";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GBSFileWrapper/GBSFileWrapper-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GBSFileWrapperTests/GBSFileWrapperTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		84FD4D7B17F4EF9900EFC2D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GBSFileWrapper.framework/Versions/A/GBSFileWrapper";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GBSFileWrapper/GBSFileWrapper-Prefix.pch";
+				INFOPLIST_FILE = "GBSFileWrapperTests/GBSFileWrapperTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84FD4D4817F4EF9900EFC2D3 /* Build configuration list for PBXProject "GBSFileWrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84FD4D7417F4EF9900EFC2D3 /* Debug */,
+				84FD4D7517F4EF9900EFC2D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84FD4D7617F4EF9900EFC2D3 /* Build configuration list for PBXNativeTarget "GBSFileWrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84FD4D7717F4EF9900EFC2D3 /* Debug */,
+				84FD4D7817F4EF9900EFC2D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		84FD4D7917F4EF9900EFC2D3 /* Build configuration list for PBXNativeTarget "GBSFileWrapperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84FD4D7A17F4EF9900EFC2D3 /* Debug */,
+				84FD4D7B17F4EF9900EFC2D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 84FD4D4517F4EF9900EFC2D3 /* Project object */;
+}
