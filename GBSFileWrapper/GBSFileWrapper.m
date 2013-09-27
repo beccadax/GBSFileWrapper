@@ -11,6 +11,8 @@
 @implementation GBSFileWrapper
 
 - (id)initWithDataSource:(id<GBSFileWrapperDataSource>)dataSource {
+    NSParameterAssert(dataSource);
+    
     if((self = [super init])) {
         _dataSource = dataSource;
     }
