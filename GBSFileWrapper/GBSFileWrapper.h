@@ -18,6 +18,10 @@
 
 @property (readonly) id <GBSFileWrapperDataSource> dataSource;
 
+// Only call this to replace the data source with one that represents the exact same data.
+// It will not trigger KVO notifications for `type` or `contents`!
+- (void)substituteEquivalentDataSource:(id <GBSFileWrapperDataSource>)dataSource;
+
 @property (readonly) GBSFileWrapperType type;
 @property (readonly) id /*<GBSFileWrapperContents>*/ contents;
 

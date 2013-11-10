@@ -19,6 +19,10 @@
     return self;
 }
 
+- (void)substituteEquivalentDataSource:(id<GBSFileWrapperDataSource>)dataSource {
+    _dataSource = dataSource;
+}
+
 - (GBSFileWrapperType)type {
     return [self.dataSource typeForFileWrapper:self];
 }
