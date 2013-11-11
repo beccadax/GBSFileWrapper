@@ -65,4 +65,16 @@
     return [[GBSMutableFileWrapper alloc] initWithDataSource:[self.dataSource copyFromFileWrapper:self]];
 }
 
+- (NSUInteger)hash {
+    return [self.contents hash] << 2 | self.type;
+}
+
+- (BOOL)isEqual:(GBSFileWrapper*)object {
+    if(![object isKindOfClass:GBSFileWrapper.class]) {
+        return NO;
+    }
+    
+    return self.type == object.type && [self.contents isEqual:object.contents];
+}
+
 @end

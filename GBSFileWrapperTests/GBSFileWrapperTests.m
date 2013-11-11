@@ -65,4 +65,37 @@
     XCTAssertEqualObjects([dir2.contents[@"dir1"] contents][@"one"], oneWrapper, @"Nesting directories doesn't damage the inner directory");
 }
 
+- (void)testEquality {
+    GBSFileWrapper * fileA = [[GBSFileWrapper alloc] initWithContents:[@"fileA" dataUsingEncoding:NSUTF8StringEncoding] resourceValues:nil];
+    GBSFileWrapper * anotherFileA = [[GBSFileWrapper alloc] initWithContents:[@"fileA" dataUsingEncoding:NSUTF8StringEncoding] resourceValues:nil];
+    GBSFileWrapper * fileB = [[GBSFileWrapper alloc] initWithContents:[@"fileB!" dataUsingEncoding:NSUTF8StringEncoding] resourceValues:nil];
+    
+    XCTAssertEqualObjects(fileA, fileA, @"Identical files compare equal");
+    XCTAssertEqualObjects(fileA, anotherFileA, @"Objects with same file content compare equal");
+    XCTAssertNotEqualObjects(fileA, fileB, @"Objects with different file content don't compare equal");
+    
+    XCTAssertEqual([fileA hash], [fileA hash], @"Hashes are stable");
+    XCTAssertEqual([fileA hash], [anotherFileA hash], @"Equal objects hash equal");
+    XCTAssertNotEqual([fileA hash], [fileB hash], @"Unequal objects don't necessarily hash equal");
+    
+    GBSFileWrapper * dirWithA = [[GBSFileWrapper alloc] initWithContents:@{ @"fileA": fileA } resourceValues:nil];
+    GBSFileWrapper * dirWithAnotherA = [[GBSFileWrapper alloc] initWithContents:@{ @"fileA": anotherFileA } resourceValues:nil];
+    GBSFileWrapper * dirWithB = [[GBSFileWrapper alloc] initWithContents:@{ @"fileB": fileB } resourceValues:nil];
+    GBSFileWrapper * dirWithAAndB = [[GBSFileWrapper alloc] initWithContents:@{ @"fileA": fileA, @"fileB": fileB } resourceValues:nil];
+    GBSFileWrapper * dirWithBNamedLikeA = [[GBSFileWrapper alloc] initWithContents:@{ @"fileA": fileB } resourceValues:nil];
+    GBSFileWrapper * dirWithANamedLikeB = [[GBSFileWrapper alloc] initWithContents:@{ @"fileB": fileA } resourceValues:nil];
+    
+    XCTAssertNotEqualObjects(fileA, dirWithA, @"Regular files and directories are not equal");
+    XCTAssertNotEqual([fileA hash], [dirWithA hash], @"Regular files and directories have different hashes");
+    
+    XCTAssertEqualObjects(dirWithA, dirWithA, @"Identical directories compare equal");
+    XCTAssertEqualObjects(dirWithA, dirWithAnotherA, @"Objects with equivalent directory content compare equal");
+    
+    XCTAssertNotEqualObjects(dirWithA, dirWithB, @"Objects with different directory content don't compare equal");
+    XCTAssertNotEqualObjects(dirWithA, dirWithAAndB, @"...even if one is a superset of the other");
+    XCTAssertNotEqualObjects(dirWithAAndB, dirWithA, @"...even if one is a subset of the other");
+    XCTAssertNotEqualObjects(dirWithA, dirWithBNamedLikeA, @"...even if they have the same file names");
+    XCTAssertNotEqualObjects(dirWithA, dirWithANamedLikeB, @"...even if they have the same file contents");
+}
+
 @end

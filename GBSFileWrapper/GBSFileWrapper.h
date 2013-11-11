@@ -27,8 +27,9 @@
 
 - (BOOL)getResourceValue:(out id *)value forKey:(NSString *)key error:(out NSError **)error;
 - (NSDictionary *)resourceValuesForKeys:(NSArray *)keys error:(NSError **)error;
-//- (BOOL)setResourceValue:(id)value forKey:(NSString *)key error:(NSError **)error;
-//- (BOOL)setResourceValues:(NSDictionary *)keyedValues error:(NSError **)error;
+
+- (NSUInteger)hash;
+- (BOOL)isEqual:(id)object;
 
 @end
 
