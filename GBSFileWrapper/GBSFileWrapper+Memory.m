@@ -128,7 +128,7 @@
 }
 
 - (id<GBSFileWrapperDataSource>)copyFromFileWrapper:(GBSFileWrapper *)fileWrapper {
-    return [[self.class alloc] initWithContents:self.contents resourceValues:self.resourceValues];
+    return [[GBSFileWrapperMemoryMutableDataSource alloc] initWithContents:self.contents resourceValues:self.resourceValues];
 }
 
 - (GBSFileWrapperMemoryMutableDataSource*)substituteIntoFileWrapper:(GBSFileWrapper*)fileWrapper {

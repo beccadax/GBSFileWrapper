@@ -77,4 +77,23 @@
     XCTAssertNotNil(dir.contents[name], @"Adds the file under the right (different) name");
 }
 
+- (void)testCopy {
+    GBSFileWrapper * fileA = [[GBSFileWrapper alloc] initWithContents:[@"fileA" dataUsingEncoding:NSUTF8StringEncoding] resourceValues:nil];
+    GBSFileWrapper * fileACopy = [fileA copy];
+    GBSMutableFileWrapper * fileAMutableCopy = [fileA mutableCopy];
+    GBSFileWrapper * fileAMutableCopyCopy = [fileAMutableCopy copy];
+    GBSMutableFileWrapper * fileAMutableCopyMutableCopy = [fileAMutableCopy mutableCopy];
+    
+    XCTAssertEqualObjects(fileA, fileACopy, @"GBSFileWrapper equals copy of itself");
+    XCTAssertEqualObjects(fileA, fileAMutableCopy, @"GBSFileWrapper equals mutable copy of itself");
+    XCTAssertEqualObjects(fileAMutableCopy, fileAMutableCopyCopy, @"GBSMutableFileWrapper equals copy of itself");
+    XCTAssertEqualObjects(fileAMutableCopy, fileAMutableCopyMutableCopy, @"GBSMutableFileWrapper equals mutable copy of itself");
+    
+    fileAMutableCopy.contents = [@"everything evil" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    XCTAssertNotEqualObjects(fileA, fileAMutableCopy, @"GBSFileWrapper not equals mutable copy of itself after mutation");
+    XCTAssertNotEqualObjects(fileAMutableCopy, fileAMutableCopyCopy, @"GBSMutableFileWrapper not equals copy of itself after mutation");
+    XCTAssertNotEqualObjects(fileAMutableCopy, fileAMutableCopyMutableCopy, @"GBSMutableFileWrapper not equals mutable copy of itself after mutation");
+}
+
 @end
