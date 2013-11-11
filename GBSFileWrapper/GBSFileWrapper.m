@@ -70,6 +70,10 @@
 }
 
 - (BOOL)isEqual:(GBSFileWrapper*)object {
+    if(self == object) {
+        return YES;
+    }
+    
     if(![object isKindOfClass:GBSFileWrapper.class]) {
         return NO;
     }
