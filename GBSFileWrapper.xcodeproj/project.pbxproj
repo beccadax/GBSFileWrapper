@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84EBDC35182F65490092D8D8 /* GBSFileWrapperURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBDC34182F65490092D8D8 /* GBSFileWrapperURL.m */; };
+		84EBDC35182F65490092D8D8 /* GBSFileWrapperURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBDC34182F65490092D8D8 /* GBSFileWrapperURLTests.m */; };
 		84FD4D5217F4EF9900EFC2D3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FD4D5117F4EF9900EFC2D3 /* Cocoa.framework */; };
 		84FD4D5C17F4EF9900EFC2D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84FD4D5A17F4EF9900EFC2D3 /* InfoPlist.strings */; };
 		84FD4D6017F4EF9900EFC2D3 /* GBSFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D5F17F4EF9900EFC2D3 /* GBSFileWrapper.m */; };
@@ -42,7 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		84EBDC34182F65490092D8D8 /* GBSFileWrapperURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSFileWrapperURL.m; sourceTree = "<group>"; };
+		84EBDC34182F65490092D8D8 /* GBSFileWrapperURLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSFileWrapperURLTests.m; sourceTree = "<group>"; };
 		84FD4D4E17F4EF9900EFC2D3 /* GBSFileWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GBSFileWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FD4D5117F4EF9900EFC2D3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		84FD4D5417F4EF9900EFC2D3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -169,7 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				84FD4D7217F4EF9900EFC2D3 /* GBSFileWrapperTests.m */,
-				84EBDC34182F65490092D8D8 /* GBSFileWrapperURL.m */,
+				84EBDC34182F65490092D8D8 /* GBSFileWrapperURLTests.m */,
 				84FD4D6D17F4EF9900EFC2D3 /* Supporting Files */,
 			);
 			path = GBSFileWrapperTests;
@@ -310,7 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84EBDC35182F65490092D8D8 /* GBSFileWrapperURL.m in Sources */,
+				84EBDC35182F65490092D8D8 /* GBSFileWrapperURLTests.m in Sources */,
 				84FD4D7317F4EF9900EFC2D3 /* GBSFileWrapperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,13 +9,13 @@
 #import <XCTest/XCTest.h>
 #import "GBSFileWrapper.h"
 
-@interface GBSFileWrapperURL : XCTestCase
+@interface GBSFileWrapperURLTests : XCTestCase
 
 @property (strong) GBSFileWrapper * colorSync;
 
 @end
 
-@implementation GBSFileWrapperURL
+@implementation GBSFileWrapperURLTests
 
 - (void)setUp
 {
