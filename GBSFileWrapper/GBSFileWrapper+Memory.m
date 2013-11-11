@@ -15,22 +15,32 @@
 }
 
 - (id)initWithContents:(id<GBSFileWrapperContents>)contents resourceValues:(NSDictionary *)resourceValues {
-    GBSFileWrapperMemoryDataSource * source = [GBSFileWrapperMemoryDataSource new];
-    source.contents = contents;
-    [source.resourceValues addEntriesFromDictionary:resourceValues];
+    GBSFileWrapperMemoryDataSource * source = [[GBSFileWrapperMemoryDataSource alloc] initWithContents:contents resourceValues:resourceValues];
     
     return [self initWithDataSource:source];
 }
 
 @end
 
+@interface GBSFileWrapperMemoryDataSource ()
+
+@property (strong) id <GBSFileWrapperContents> contents;
+@property (strong) NSDictionary * resourceValues; 
+
+@end
+
 @implementation GBSFileWrapperMemoryDataSource
 
-- (id)init {
+- (id)initWithContents:(id<GBSFileWrapperContents>)contents resourceValues:(NSDictionary *)resourceValues {
     if((self = [super init])) {
-        _resourceValues = [NSMutableDictionary new];
+        _contents = contents;
+        _resourceValues = resourceValues;
     }
     return self;
+}
+
+- (id)init {
+    return [self initWithContents:nil resourceValues:@{}];
 }
 
 - (GBSFileWrapperType)typeForFileWrapper:(GBSFileWrapper *)fileWrapper {
