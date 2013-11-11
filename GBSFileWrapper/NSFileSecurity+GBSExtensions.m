@@ -11,23 +11,18 @@
 @implementation NSFileSecurity (GBSExtensions)
 
 - (id)initWithPOSIXMode:(NSNumber*)mode {
-    if((self = [self init])) {
-        if(![self setPOSIXMode:mode]) {
-            return nil;
-        }
-    }
-    return self;
+    return [self initWithPOSIXMode:mode owner:nil group:nil];
 }
 
 - (id)initWithPOSIXMode:(NSNumber*)mode owner:(NSNumber*)owner group:(NSNumber*)group; {
     if((self = [self init])) {
-        if(![self setPOSIXMode:mode]) {
+        if(mode && ![self setPOSIXMode:mode]) {
             return nil;
         }
-        if(![self setPOSIXOwner:owner]) {
+        if(owner && ![self setPOSIXOwner:owner]) {
             return nil;
         }
-        if(![self setPOSIXGroup:group]) {
+        if(group && ![self setPOSIXGroup:group]) {
             return nil;
         }
     }
