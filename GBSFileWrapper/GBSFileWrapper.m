@@ -57,4 +57,12 @@
     return [self.dataSource resourceValuesForKeys:keys error:error];
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+    return [[GBSMutableFileWrapper alloc] initWithDataSource:[self.dataSource copyFromFileWrapper:self]];
+}
+
 @end

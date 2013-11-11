@@ -159,4 +159,65 @@
     return dict;
 }
 
+- (id<GBSFileWrapperDataSource>)copyFromFileWrapper:(GBSFileWrapper *)fileWrapper {
+    return self;
+}
+
+- (GBSFileWrapperMemoryMutableDataSource*)substituteIntoFileWrapper:(GBSFileWrapper*)fileWrapper {
+    id <GBSFileWrapperContents> contents;
+    NSDictionary * resourceValues = [self resourceValuesForKeys:@[ NSURLHasHiddenExtensionKey, NSURLFileSecurityKey ] error:NULL];
+    
+    switch ([self typeForFileWrapper:fileWrapper]) {
+        case GBSFileWrapperTypeDirectory:
+            contents = [self directoryContentsForFileWrapper:fileWrapper];
+            break;
+            
+        case GBSFileWrapperTypeNil:
+            contents = nil;
+            break;
+            
+        case GBSFileWrapperTypeRegularFile:
+            contents = [self regularFileContentsForFileWrapper:fileWrapper];
+            break;
+            
+        case GBSFileWrapperTypeSymbolicLink:
+            contents = [self symbolicLinkContentsForFileWrapper:fileWrapper];
+            break;
+    }
+    
+    GBSFileWrapperMemoryMutableDataSource * mutableDataSource = [[GBSFileWrapperMemoryMutableDataSource alloc] initWithContents:contents resourceValues:resourceValues];
+    
+    [fileWrapper substituteEquivalentDataSource:mutableDataSource];
+    
+    return mutableDataSource;
+}
+
+- (void)setRegularFileContents:(NSData *)contents forFileWrapper:(GBSFileWrapper *)fileWrapper {
+    [[self substituteIntoFileWrapper:fileWrapper] setRegularFileContents:contents forFileWrapper:fileWrapper];
+}
+
+- (void)setSymbolicLinkContents:(NSURL *)contents forFileWrapper:(GBSFileWrapper *)fileWrapper {
+    [[self substituteIntoFileWrapper:fileWrapper] setSymbolicLinkContents:contents forFileWrapper:fileWrapper];
+}
+
+- (void)makeDirectoryContentsForFileWrapper:(GBSFileWrapper *)fileWrapper {
+    [[self substituteIntoFileWrapper:fileWrapper] makeDirectoryContentsForFileWrapper:fileWrapper];
+}
+
+- (void)addDirectoryContents:(NSDictionary *)dictionaryOfNamesAndFileWrappersOrNulls {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)removeAllDirectoryContents {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)setNilContentsForFileWrapper:(GBSFileWrapper *)fileWrapper {
+    [[self substituteIntoFileWrapper:fileWrapper] setNilContentsForFileWrapper:fileWrapper];
+}
+
+- (void)updateResourceValues:(NSDictionary *)values forFileWrapper:(GBSFileWrapper *)fileWrapper {
+    [[self substituteIntoFileWrapper:fileWrapper] updateResourceValues:values forFileWrapper:fileWrapper];
+}
+
 @end

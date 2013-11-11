@@ -20,3 +20,7 @@
 - (id)initWithContents:(id <GBSFileWrapperContents>)contents resourceValues:(NSDictionary *)resourceValues;
 
 @end
+
+@interface GBSFileWrapperMemoryMutableDataSource : GBSFileWrapperMemoryDataSource
+
+@end

@@ -11,7 +11,7 @@
 #import "GBSFileWrapperDefines.h"
 #import "NSFileSecurity+GBSExtensions.h"
 
-@interface GBSFileWrapper : NSObject
+@interface GBSFileWrapper : NSObject <NSCopying, NSMutableCopying>
 
 // Designated initializer
 - (id)initWithDataSource:(id <GBSFileWrapperDataSource>)dataSource;
@@ -37,3 +37,5 @@
 #import "GBSFileWrapper+Memory.h"
 #import "GBSFileWrapper+NSFileWrapper.h"
 #import "GBSFileWrapper+URL.h"
+
+#import "GBSMutableFileWrapper.h"

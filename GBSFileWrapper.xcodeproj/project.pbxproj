@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		84EBDC35182F65490092D8D8 /* GBSFileWrapperURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBDC34182F65490092D8D8 /* GBSFileWrapperURLTests.m */; };
+		84EBDC38182F6A290092D8D8 /* GBSMutableFileWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 84EBDC36182F6A290092D8D8 /* GBSMutableFileWrapper.h */; };
+		84EBDC39182F6A290092D8D8 /* GBSMutableFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBDC37182F6A290092D8D8 /* GBSMutableFileWrapper.m */; };
+		84EBDC3B18307FC10092D8D8 /* GBSMutableFileWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBDC3A18307FC10092D8D8 /* GBSMutableFileWrapperTests.m */; };
 		84FD4D5217F4EF9900EFC2D3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FD4D5117F4EF9900EFC2D3 /* Cocoa.framework */; };
 		84FD4D5C17F4EF9900EFC2D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84FD4D5A17F4EF9900EFC2D3 /* InfoPlist.strings */; };
 		84FD4D6017F4EF9900EFC2D3 /* GBSFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D5F17F4EF9900EFC2D3 /* GBSFileWrapper.m */; };
@@ -43,6 +46,9 @@
 
 /* Begin PBXFileReference section */
 		84EBDC34182F65490092D8D8 /* GBSFileWrapperURLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSFileWrapperURLTests.m; sourceTree = "<group>"; };
+		84EBDC36182F6A290092D8D8 /* GBSMutableFileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBSMutableFileWrapper.h; sourceTree = "<group>"; };
+		84EBDC37182F6A290092D8D8 /* GBSMutableFileWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSMutableFileWrapper.m; sourceTree = "<group>"; };
+		84EBDC3A18307FC10092D8D8 /* GBSMutableFileWrapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSMutableFileWrapperTests.m; sourceTree = "<group>"; };
 		84FD4D4E17F4EF9900EFC2D3 /* GBSFileWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GBSFileWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FD4D5117F4EF9900EFC2D3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		84FD4D5417F4EF9900EFC2D3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,6 +154,8 @@
 				84FD4D9917F5451800EFC2D3 /* GBSFileWrapper+URL.m */,
 				84FD4D9C17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h */,
 				84FD4D9D17F54B2800EFC2D3 /* GBSFileWrapper+Memory.m */,
+				84EBDC36182F6A290092D8D8 /* GBSMutableFileWrapper.h */,
+				84EBDC37182F6A290092D8D8 /* GBSMutableFileWrapper.m */,
 				84FD4D5817F4EF9900EFC2D3 /* Supporting Files */,
 				84FD4D9417F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h */,
 				84FD4D9517F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.m */,
@@ -170,6 +178,7 @@
 			children = (
 				84FD4D7217F4EF9900EFC2D3 /* GBSFileWrapperTests.m */,
 				84EBDC34182F65490092D8D8 /* GBSFileWrapperURLTests.m */,
+				84EBDC3A18307FC10092D8D8 /* GBSMutableFileWrapperTests.m */,
 				84FD4D6D17F4EF9900EFC2D3 /* Supporting Files */,
 			);
 			path = GBSFileWrapperTests;
@@ -191,6 +200,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EBDC38182F6A290092D8D8 /* GBSMutableFileWrapper.h in Headers */,
 				84FD4D9A17F5451800EFC2D3 /* GBSFileWrapper+URL.h in Headers */,
 				84FD4D8717F4F3BB00EFC2D3 /* GBSFileWrapperDataSource.h in Headers */,
 				84FD4D9217F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h in Headers */,
@@ -300,6 +310,7 @@
 				84FD4D9B17F5451800EFC2D3 /* GBSFileWrapper+URL.m in Sources */,
 				84FD4D9F17F54B2800EFC2D3 /* GBSFileWrapper+Memory.m in Sources */,
 				84FD4D8F17F4F4E400EFC2D3 /* GBSFileWrapperContents.m in Sources */,
+				84EBDC39182F6A290092D8D8 /* GBSMutableFileWrapper.m in Sources */,
 				84FD4D9717F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.m in Sources */,
 				84FD4D6017F4EF9900EFC2D3 /* GBSFileWrapper.m in Sources */,
 				84FD4D9317F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.m in Sources */,
@@ -310,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EBDC3B18307FC10092D8D8 /* GBSMutableFileWrapperTests.m in Sources */,
 				84EBDC35182F65490092D8D8 /* GBSFileWrapperURLTests.m in Sources */,
 				84FD4D7317F4EF9900EFC2D3 /* GBSFileWrapperTests.m in Sources */,
 			);
