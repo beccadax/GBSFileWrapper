@@ -10,7 +10,7 @@
 
 @implementation NSFileSecurity (GBSExtensions)
 
-- (id)initWithPOSIXMode:(mode_t)mode {
+- (id)initWithPOSIXMode:(NSNumber*)mode {
     if((self = [self init])) {
         if(![self setPOSIXMode:mode]) {
             return nil;
@@ -19,7 +19,7 @@
     return self;
 }
 
-- (id)initWithPOSIXMode:(mode_t)mode owner:(uid_t)owner group:(gid_t)group {
+- (id)initWithPOSIXMode:(NSNumber*)mode owner:(NSNumber*)owner group:(NSNumber*)group; {
     if((self = [self init])) {
         if(![self setPOSIXMode:mode]) {
             return nil;
@@ -39,32 +39,71 @@
 }
 
 #define GBSFileSecurityAccessors(selectorName, functionName, type) \
-- (BOOL)get##selectorName:(type*)value { \
-    return CFFileSecurityGet##functionName([self CFFileSecurity], value); \
+- (NSNumber*)selectorName { \
+    type value; \
+    if(!CFFileSecurityGet##functionName([self CFFileSecurity], &value)) { return nil; } \
+    return @(value); \
 } \
 \
-- (BOOL)set##selectorName:(type)value { \
-    return CFFileSecuritySet##functionName([self CFFileSecurity], value); \
+- (BOOL)set##selectorName:(NSNumber*)value { \
+    if(!value) { \
+        return CFFileSecurityClearProperties([self CFFileSecurity], kCFFileSecurityClear##functionName); \
+    } \
+    return CFFileSecuritySet##functionName([self CFFileSecurity], (type)value.unsignedLongValue); \
 } \
-\
-- (BOOL)clear##selectorName { \
-    return CFFileSecurityClearProperties([self CFFileSecurity], kCFFileSecurityClear##functionName); \
-}
 
 GBSFileSecurityAccessors(POSIXMode, Mode, mode_t)
 GBSFileSecurityAccessors(POSIXOwner, Owner, uid_t)
 GBSFileSecurityAccessors(POSIXGroup, Group, gid_t)
 
-- (BOOL)getAccessControlList:(acl_t *)value {
-    return CFFileSecurityCopyAccessControlList([self CFFileSecurity], value);
+- (NSValue*)accessControlList {
+    acl_t value;
+    if(!CFFileSecurityCopyAccessControlList([self CFFileSecurity], &value)) {
+        return nil;
+    }
+    return [NSValue valueWithACL:value];
 }
 
-- (BOOL)setAccessControlList:(acl_t)value { \
-    return CFFileSecuritySetAccessControlList([self CFFileSecurity], value);
-}
-
-- (BOOL)clearAccessControlList {
-    return CFFileSecurityClearProperties([self CFFileSecurity], kCFFileSecurityClearAccessControlList);
+- (BOOL)setAccessControlList:(NSValue *)ACL {
+    if(!ACL) {
+        return CFFileSecurityClearProperties([self CFFileSecurity], kCFFileSecurityClearAccessControlList);
+    }
+    
+    return CFFileSecuritySetAccessControlList([self CFFileSecurity], ACL.ACLValue);
 }
 
 @end
+
+@interface GBSACLValue : NSValue @end
+
+@implementation NSValue (ACL)
+
+- (acl_t)ACLValue {
+    if(strcmp(self.objCType, @encode(acl_t)) != 0) {
+        return NULL;
+    }
+    
+    acl_t value;
+    [self getValue:&value];
+    return value;
+}
+
++ (instancetype)valueWithACL:(acl_t)acl {
+    return [GBSACLValue valueWithACL:acl];
+}
+
+@end
+
+@implementation GBSACLValue
+
++ (instancetype)valueWithACL:(acl_t)acl {
+    return [[GBSACLValue alloc] initWithBytes:&acl objCType:@encode(acl_t)];
+}
+
+- (void)dealloc {
+    acl_free(self.ACLValue);
+}
+
+@end
+
+

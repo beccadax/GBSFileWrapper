@@ -10,25 +10,26 @@
 
 @interface NSFileSecurity (GBSExtensions)
 
-- (id)initWithPOSIXMode:(mode_t)mode;
-- (id)initWithPOSIXMode:(mode_t)mode owner:(uid_t)owner group:(gid_t)group;
+- (id)initWithPOSIXMode:(NSNumber*)mode;
+- (id)initWithPOSIXMode:(NSNumber*)mode owner:(NSNumber*)owner group:(NSNumber*)group;
 
 - (CFFileSecurityRef)CFFileSecurity NS_RETURNS_INNER_POINTER;
 
-- (BOOL)getPOSIXMode:(mode_t*)mode;
-- (BOOL)setPOSIXMode:(mode_t)mode;
-- (BOOL)clearPOSIXMode;
+@property (readonly) NSNumber * POSIXMode;
+@property (readonly) NSNumber * POSIXOwner;
+@property (readonly) NSNumber * POSIXGroup;
+@property (readonly) NSValue * accessControlList;
 
-- (BOOL)getPOSIXOwner:(uid_t*)user;
-- (BOOL)setPOSIXOwner:(uid_t)user;
-- (BOOL)clearPOSIXOwner;
+- (BOOL)setPOSIXMode:(NSNumber*)value;
+- (BOOL)setPOSIXOwner:(NSNumber*)value;
+- (BOOL)setPOSIXGroup:(NSNumber*)value;
+- (BOOL)setAccessControlList:(NSValue*)ACL;
 
-- (BOOL)getPOSIXGroup:(gid_t*)group;
-- (BOOL)setPOSIXGroup:(gid_t)group;
-- (BOOL)clearPOSIXGroup;
+@end
 
-- (BOOL)getAccessControlList:(acl_t*)acl;   // You're responsible for acl_free()ing this later!
-- (BOOL)setAccessControlList:(acl_t)acl;
-- (BOOL)clearAccessControlList;
+@interface NSValue (ACL)
+
++ (instancetype)valueWithACL:(acl_t)acl;    // Will automatically acl_free acl when finished.
+- (acl_t)ACLValue NS_RETURNS_INNER_POINTER;
 
 @end

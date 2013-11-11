@@ -63,21 +63,21 @@
     
     NSFileSecurity * security;
     if([self getResourceValue:&security forKey:NSURLFileSecurityKey error:NULL]) {
-        mode_t mode;
-        if([security getPOSIXMode:&mode]) {
-            attrs[NSFilePosixPermissions] = @(mode);
+        NSNumber * mode = security.POSIXMode;
+        if(mode) {
+            attrs[NSFilePosixPermissions] = mode;
         }
         
-        uid_t owner;
-        if([security getPOSIXOwner:&owner]) {
-            attrs[NSFileOwnerAccountID] = @(owner);
-            attrs[NSFileOwnerAccountName] = @(getpwuid(owner)->pw_name);
+        NSNumber * owner = security.POSIXOwner;
+        if(owner) {
+            attrs[NSFileOwnerAccountID] = owner;
+            attrs[NSFileOwnerAccountName] = @(getpwuid(owner.integerValue)->pw_name);
         }
         
-        gid_t group;
-        if([security getPOSIXGroup:&group]) {
-            attrs[NSFileGroupOwnerAccountID] = @(group);
-            attrs[NSFileGroupOwnerAccountName] = @(getgrgid(group)->gr_name);
+        NSNumber * group = security.POSIXGroup;
+        if(group) {
+            attrs[NSFileGroupOwnerAccountID] = group;
+            attrs[NSFileGroupOwnerAccountName] = @(getgrgid(group.integerValue)->gr_name);
         }
     }
     
@@ -149,19 +149,7 @@
             dict[NSURLHasHiddenExtensionKey] = self.fileAttributes[NSFileExtensionHidden];
         }
         else if([key isEqualToString:NSURLFileSecurityKey]) {
-            NSFileSecurity * security = [NSFileSecurity new];
-            
-            if(self.fileAttributes[NSFilePosixPermissions]) {
-                [security setPOSIXMode:self.fileAttributes.filePosixPermissions];
-            }
-            if(self.fileAttributes[NSFileOwnerAccountID]) {
-                [security setPOSIXOwner:self.fileAttributes.fileOwnerAccountID.unsignedIntValue];
-            }
-            if(self.fileAttributes[NSFileGroupOwnerAccountID]) {
-                [security setPOSIXGroup:self.fileAttributes.fileOwnerAccountID.unsignedIntValue];
-            }
-            
-            dict[NSURLFileSecurityKey] = security;
+            dict[NSURLFileSecurityKey] = [[NSFileSecurity alloc] initWithPOSIXMode:self.fileAttributes[NSFilePosixPermissions] owner:self.fileAttributes[NSFileOwnerAccountID] group:self.fileAttributes[NSFileGroupOwnerAccountID]];
         }
         else {
             NSAssert(NO, @"The resource value key %@ is not yet supported.", key);

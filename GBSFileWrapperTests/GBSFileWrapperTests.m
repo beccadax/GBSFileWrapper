@@ -28,7 +28,7 @@
 - (void)testExample {
     NSData * data = [@"example" dataUsingEncoding:NSUTF8StringEncoding];
         
-    GBSFileWrapper * wrapper = [[GBSFileWrapper alloc] initWithContents:data resourceValues:@{ NSURLFileSecurityKey: [[NSFileSecurity alloc] initWithPOSIXMode:0644] }];
+    GBSFileWrapper * wrapper = [[GBSFileWrapper alloc] initWithContents:data resourceValues:@{ NSURLFileSecurityKey: [[NSFileSecurity alloc] initWithPOSIXMode:@(0644)] }];
     
     XCTAssertNotNil(wrapper, @"Constructed a file wrapper");
     XCTAssertEqual(wrapper.type, GBSFileWrapperTypeRegularFile, @"GBSFileWrapper with NSData contents is a regualr file");
@@ -39,9 +39,8 @@
     XCTAssertTrue([wrapper getResourceValue:&security forKey:NSURLFileSecurityKey error:NULL], @"Fetched security object successfully");
     XCTAssertNotNil(wrapper, @"Actually got a security object");
     
-    mode_t mode;
-    XCTAssertTrue([security getPOSIXMode:&mode], @"Can get POSIX mode");
-    XCTAssertEqual(mode, (mode_t)0644, @"POSIX mode is correct");
+    XCTAssertNotNil(security.POSIXMode, @"Can get POSIX mode");
+    XCTAssertEqual((mode_t)security.POSIXMode.integerValue, (mode_t)0644, @"POSIX mode is correct");
 }
 
 - (void)testDirectory {
