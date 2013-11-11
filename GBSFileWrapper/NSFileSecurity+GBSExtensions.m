@@ -38,23 +38,23 @@
     return (__bridge CFFileSecurityRef)self;
 }
 
-#define GBSFileSecurityAccessors(selectorName, functionName, type) \
-- (NSNumber*)selectorName { \
+#define GBSFileSecurityAccessors(name, type) \
+- (NSNumber*)POSIX##name { \
     type value; \
-    if(!CFFileSecurityGet##functionName([self CFFileSecurity], &value)) { return nil; } \
+    if(!CFFileSecurityGet##name([self CFFileSecurity], &value)) { return nil; } \
     return @(value); \
 } \
 \
-- (BOOL)set##selectorName:(NSNumber*)value { \
+- (BOOL)setPOSIX##name:(NSNumber*)value { \
     if(!value) { \
-        return CFFileSecurityClearProperties([self CFFileSecurity], kCFFileSecurityClear##functionName); \
+        return CFFileSecurityClearProperties([self CFFileSecurity], kCFFileSecurityClear##name); \
     } \
-    return CFFileSecuritySet##functionName([self CFFileSecurity], (type)value.unsignedLongValue); \
+    return CFFileSecuritySet##name([self CFFileSecurity], (type)value.unsignedLongValue); \
 } \
 
-GBSFileSecurityAccessors(POSIXMode, Mode, mode_t)
-GBSFileSecurityAccessors(POSIXOwner, Owner, uid_t)
-GBSFileSecurityAccessors(POSIXGroup, Group, gid_t)
+GBSFileSecurityAccessors(Mode, mode_t)
+GBSFileSecurityAccessors(Owner, uid_t)
+GBSFileSecurityAccessors(Group, gid_t)
 
 - (NSValue*)accessControlList {
     acl_t value;
