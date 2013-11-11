@@ -73,6 +73,7 @@
     XCTAssertEqualObjects(fileA, fileA, @"Identical files compare equal");
     XCTAssertEqualObjects(fileA, anotherFileA, @"Objects with same file content compare equal");
     XCTAssertNotEqualObjects(fileA, fileB, @"Objects with different file content don't compare equal");
+    XCTAssertNotEqualObjects(fileA, [NSObject new], @"GBSFileWrapper is not equal to objects of different types");
     
     XCTAssertEqual([fileA hash], [fileA hash], @"Hashes are stable");
     XCTAssertEqual([fileA hash], [anotherFileA hash], @"Equal objects hash equal");
