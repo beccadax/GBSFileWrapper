@@ -29,7 +29,7 @@
 
 @end
 
-@interface GBSFileWrapperMemoryMutableDataSource ()
+@interface GBSFileWrapperMemoryMutableDataSource : GBSFileWrapperMemoryDataSource
 
 @property (strong) NSMutableDictionary * resourceValues; 
 

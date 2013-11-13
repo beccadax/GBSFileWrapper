@@ -21,6 +21,3 @@
 
 @end
 
-@interface GBSFileWrapperMemoryMutableDataSource : GBSFileWrapperMemoryDataSource
-
-@end

@@ -163,7 +163,7 @@
     return self;
 }
 
-- (GBSFileWrapperMemoryMutableDataSource*)substituteIntoFileWrapper:(GBSFileWrapper*)fileWrapper {
+- (GBSFileWrapperMemoryDataSource*)substituteIntoFileWrapper:(GBSFileWrapper*)fileWrapper {
     id <GBSFileWrapperContents> contents;
     NSDictionary * resourceValues = [self resourceValuesForKeys:@[ NSURLHasHiddenExtensionKey, NSURLFileSecurityKey ] error:NULL];
     
@@ -185,7 +185,7 @@
             break;
     }
     
-    GBSFileWrapperMemoryMutableDataSource * mutableDataSource = [[GBSFileWrapperMemoryMutableDataSource alloc] initWithContents:contents resourceValues:resourceValues];
+    GBSFileWrapperMemoryDataSource * mutableDataSource = [[GBSFileWrapperMemoryDataSource alloc] initWithContents:contents resourceValues:resourceValues];
     
     [fileWrapper substituteEquivalentDataSource:mutableDataSource];
     
