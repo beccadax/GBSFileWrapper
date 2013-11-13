@@ -46,12 +46,12 @@
     GBSMutableFileWrapper * dir = [GBSMutableFileWrapper new];
     XCTAssertEqual(dir.type, GBSFileWrapperTypeNil, @"Wrappers start off with nil type");
     
-    [dir setDirectoryContentsFileWrapper:file forName:@"example.txt"];
+    [dir setContentsChildFileWrapper:file forName:@"example.txt"];
     XCTAssertEqual(dir.type, GBSFileWrapperTypeDirectory, @"Adding a file makes wrapper a directory");
     XCTAssertEqual([dir.contents count], (NSUInteger)1, @"...and actually adds the file");
     XCTAssertNotNil(dir.contents[@"example.txt"], @"Can access the file by name");
     
-    [dir setDirectoryContentsFileWrapper:nil forName:@"example.txt"];
+    [dir setContentsChildFileWrapper:nil forName:@"example.txt"];
     XCTAssertEqual(dir.type, GBSFileWrapperTypeDirectory, @"Still a directory after removing file");
     XCTAssertNil(dir.contents[@"example.txt"], @"Setting file to nil deletes it");
     
@@ -66,12 +66,12 @@
     dir.contents = nil;
     XCTAssertEqual(dir.type, GBSFileWrapperTypeNil, @"Successfully nil'd directory");
     
-    NSString * name = [dir addDirectoryContentsFileWrapper:file forPreferredName:@"example.txt"];
+    NSString * name = [dir addContentsChildFileWrapper:file forPreferredName:@"example.txt"];
     XCTAssertEqual([dir.contents count], (NSUInteger)1, @"-addDirectoryContentsFileWrapper: adds file to directory");
     XCTAssertEqualObjects(name, @"example.txt", @"Doesn't rename file if there's no conflict");
     XCTAssertNotNil(dir.contents[name], @"Adds the file under the right name");
     
-    name = [dir addDirectoryContentsFileWrapper:file forPreferredName:@"example.txt"];
+    name = [dir addContentsChildFileWrapper:file forPreferredName:@"example.txt"];
     XCTAssertEqual([dir.contents count], (NSUInteger)2, @"-addDirectoryContentsFileWrapper: chooses a different name if there's a conflict");
     XCTAssertEqualObjects(name, @"example 2.txt", @"...using the expected algorithm");
     XCTAssertNotNil(dir.contents[name], @"Adds the file under the right (different) name");

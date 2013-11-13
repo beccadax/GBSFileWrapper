@@ -32,12 +32,12 @@
     }
 }
 
-- (void)setDirectoryContentsFileWrapper:(GBSFileWrapper *)childWrapper forName:(NSString *)name {
+- (void)setContentsChildFileWrapper:(GBSFileWrapper *)childWrapper forName:(NSString *)name {
     [self.dataSource makeDirectoryContentsForFileWrapper:self];
     [self.dataSource addDirectoryContents:@{ name: childWrapper ?: [NSNull null] }];
 }
 
-- (NSString*)addDirectoryContentsFileWrapper:(GBSFileWrapper *)childWrapper forPreferredName:(NSString *)preferredName {
+- (NSString*)addContentsChildFileWrapper:(GBSFileWrapper *)childWrapper forPreferredName:(NSString *)preferredName {
     NSParameterAssert(childWrapper);
     
     NSString * name = preferredName;
@@ -49,7 +49,7 @@
         }
     }
     
-    [self setDirectoryContentsFileWrapper:childWrapper forName:name];
+    [self setContentsChildFileWrapper:childWrapper forName:name];
     
     return name;
 }
