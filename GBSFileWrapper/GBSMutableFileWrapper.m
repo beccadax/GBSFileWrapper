@@ -54,14 +54,6 @@
     return name;
 }
 
-- (void)setResourceValue:(id)value forKey:(NSString *)key {
-    [self setResourceValues:@{ key: value ?: [NSNull null] }];
-}
-
-- (void)setResourceValues:(NSDictionary *)keyedValues {
-    [self.dataSource updateResourceValues:keyedValues forFileWrapper:self];
-}
-
 - (id)copyWithZone:(NSZone *)zone {
     return [[GBSFileWrapper alloc] initWithDataSource:[self.dataSource copyFromFileWrapper:self]];
 }

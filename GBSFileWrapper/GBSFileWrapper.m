@@ -43,20 +43,6 @@
     }
 }
 
-- (BOOL)getResourceValue:(out id *)value forKey:(NSString *)key error:(out NSError **)error {
-    NSDictionary * dict = [self resourceValuesForKeys:@[ key ] error:error];
-    if(!dict) {
-        return NO;
-    }
-        
-    *value = dict[key];
-    return YES;
-}
-
-- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys error:(NSError **)error {
-    return [self.dataSource resourceValuesForKeys:keys error:error];
-}
-
 - (id)copyWithZone:(NSZone *)zone {
     return self;
 }

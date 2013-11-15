@@ -18,8 +18,6 @@
 - (NSURL*)symbolicLinkContentsForFileWrapper:(GBSFileWrapper*)fileWrapper;
 - (NSDictionary*)directoryContentsForFileWrapper:(GBSFileWrapper*)fileWrapper;
 
-- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys error:(NSError **)error;
-
 - (id <GBSFileWrapperDataSource>)copyFromFileWrapper:(GBSFileWrapper*)fileWrapper;
 
 - (void)setNilContentsForFileWrapper:(GBSFileWrapper*)fileWrapper;
@@ -29,7 +27,5 @@
 - (void)makeDirectoryContentsForFileWrapper:(GBSFileWrapper*)fileWrapper;
 - (void)addDirectoryContents:(NSDictionary*)dictionaryOfNamesAndFileWrappersOrNulls;
 - (void)removeAllDirectoryContents;
-
-- (void)updateResourceValues:(NSDictionary*)values forFileWrapper:(GBSFileWrapper*)fileWrapper;
 
 @end

@@ -25,9 +25,6 @@
 @property (readonly) GBSFileWrapperType type;
 @property (readonly) id /*<GBSFileWrapperContents>*/ contents;
 
-- (BOOL)getResourceValue:(out id *)value forKey:(NSString *)key error:(out NSError **)error;
-- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys error:(NSError **)error;
-
 - (NSUInteger)hash;
 - (BOOL)isEqual:(id)object;
 

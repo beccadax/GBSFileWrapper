@@ -54,6 +54,7 @@
         }
     }
     
+#if 0
     NSMutableDictionary * attrs = [NSMutableDictionary new];
     
     NSNumber * noExtension;
@@ -82,6 +83,7 @@
     }
     
     wrapper.fileAttributes = attrs;
+#endif
    
     return wrapper;
 }
@@ -141,32 +143,12 @@
     return childGBSWrappers;
 }
 
-- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys error:(NSError *__autoreleasing *)error {
-    NSMutableDictionary * dict = [NSMutableDictionary new];
-    
-    for(NSString * key in keys) {
-        if([key isEqualToString:NSURLHasHiddenExtensionKey]) {
-            dict[NSURLHasHiddenExtensionKey] = self.fileAttributes[NSFileExtensionHidden];
-        }
-        else if([key isEqualToString:NSURLFileSecurityKey]) {
-            dict[NSURLFileSecurityKey] = [[NSFileSecurity alloc] initWithPOSIXMode:self.fileAttributes[NSFilePosixPermissions] owner:self.fileAttributes[NSFileOwnerAccountID] group:self.fileAttributes[NSFileGroupOwnerAccountID]];
-        }
-        else {
-            NSAssert(NO, @"The resource value key %@ is not yet supported.", key);
-        }
-    }
-    
-    return dict;
-}
-
 - (id<GBSFileWrapperDataSource>)copyFromFileWrapper:(GBSFileWrapper *)fileWrapper {
     return self;
 }
 
 - (GBSFileWrapperMemoryDataSource*)substituteIntoFileWrapper:(GBSFileWrapper*)fileWrapper {
     id <GBSFileWrapperContents> contents;
-    NSDictionary * resourceValues = [self resourceValuesForKeys:@[ NSURLHasHiddenExtensionKey, NSURLFileSecurityKey ] error:NULL];
-    
     switch ([self typeForFileWrapper:fileWrapper]) {
         case GBSFileWrapperTypeDirectory:
             contents = [self directoryContentsForFileWrapper:fileWrapper];
@@ -185,7 +167,7 @@
             break;
     }
     
-    GBSFileWrapperMemoryDataSource * mutableDataSource = [[GBSFileWrapperMemoryDataSource alloc] initWithContents:contents resourceValues:resourceValues];
+    GBSFileWrapperMemoryDataSource * mutableDataSource = [[GBSFileWrapperMemoryDataSource alloc] initWithContents:contents];
     
     [fileWrapper substituteEquivalentDataSource:mutableDataSource];
     
@@ -214,10 +196,6 @@
 
 - (void)setNilContentsForFileWrapper:(GBSFileWrapper *)fileWrapper {
     [[self substituteIntoFileWrapper:fileWrapper] setNilContentsForFileWrapper:fileWrapper];
-}
-
-- (void)updateResourceValues:(NSDictionary *)values forFileWrapper:(GBSFileWrapper *)fileWrapper {
-    [[self substituteIntoFileWrapper:fileWrapper] updateResourceValues:values forFileWrapper:fileWrapper];
 }
 
 @end

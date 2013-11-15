@@ -16,7 +16,4 @@
 - (void)setContentsChildFileWrapper:(GBSFileWrapper*)childWrapper forName:(NSString*)name;
 - (NSString*)addContentsChildFileWrapper:(GBSFileWrapper*)childWrapper forPreferredName:(NSString*)name;    // WARNING: Not thread-safe
 
-- (void)setResourceValue:(id)value forKey:(NSString *)key;
-- (void)setResourceValues:(NSDictionary *)keyedValues;
-
 @end

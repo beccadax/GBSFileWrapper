@@ -17,7 +17,7 @@
 
 @interface GBSFileWrapperMemoryDataSource : NSObject <GBSFileWrapperDataSource>
 
-- (id)initWithContents:(id <GBSFileWrapperContents>)contents resourceValues:(NSDictionary *)resourceValues;
+- (id)initWithContents:(id <GBSFileWrapperContents>)contents;
 
 @end
 
