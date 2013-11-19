@@ -18,6 +18,8 @@ typedef NS_OPTIONS(NSUInteger, GBSFileWrapperWritingOptions) {
     
 };
 
+extern NSString * const GBSFileWrapperURLInvalidException;
+
 @interface GBSFileWrapper (URL)
 
 - (id)initWithURL:(NSURL*)URL options:(GBSFileWrapperReadingOptions)options error:(NSError**)error;
