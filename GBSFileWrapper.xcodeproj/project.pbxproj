@@ -46,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		842C497C183316B200B14B07 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		8493D6E718335E7B006DE61D /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		84EBDC34182F65490092D8D8 /* GBSFileWrapperURLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSFileWrapperURLTests.m; sourceTree = "<group>"; };
 		84EBDC36182F6A290092D8D8 /* GBSMutableFileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBSMutableFileWrapper.h; sourceTree = "<group>"; };
 		84EBDC37182F6A290092D8D8 /* GBSMutableFileWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSMutableFileWrapper.m; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		84FD4D4417F4EF9900EFC2D3 = {
 			isa = PBXGroup;
 			children = (
+				8493D6E718335E7B006DE61D /* .travis.yml */,
 				842C497C183316B200B14B07 /* README.md */,
 				84FD4D5717F4EF9900EFC2D3 /* GBSFileWrapper */,
 				84FD4D6C17F4EF9900EFC2D3 /* GBSFileWrapperTests */,
@@ -434,6 +436,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GBSFileWrapper/GBSFileWrapper-Prefix.pch";
 				INFOPLIST_FILE = "GBSFileWrapper/GBSFileWrapper-Info.plist";
@@ -449,6 +453,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GBSFileWrapper/GBSFileWrapper-Prefix.pch";
 				INFOPLIST_FILE = "GBSFileWrapper/GBSFileWrapper-Info.plist";
