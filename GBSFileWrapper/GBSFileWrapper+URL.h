@@ -18,7 +18,8 @@ typedef NS_OPTIONS(NSUInteger, GBSFileWrapperWritingOptions) {
     
 };
 
-extern NSString * const GBSFileWrapperURLInvalidException;
+/// Thrown if a GBSFileWrapper's underlying file can't be accessed when the contents property is first used. The exact error can be found in the userInfo's NSUnderlyingErrorKey key.
+extern NSString * const GBSFileWrapperContentsInaccessibleException;
 
 @interface GBSFileWrapper (URL)
 

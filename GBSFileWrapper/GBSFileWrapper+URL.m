@@ -9,9 +9,9 @@
 #import "GBSFileWrapper+URL.h"
 #import "GBSFileWrapper+NSFileWrapper.h"
 
-NSString * const GBSFileWrapperURLInvalidException = @"GBSFileWrapperURLInvalid";
+NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperContentsInaccessible";
 #define GBSAssertSucceeded(operation, error) if(!(operation)) { \
-@throw [NSException exceptionWithName:GBSFileWrapperURLInvalidException reason:[NSString stringWithFormat:@"The file at %@ cannot be accessed: %@.", self.URL.absoluteString, error.localizedDescription] userInfo:@{ @"NSError": error }]; \
+@throw [NSException exceptionWithName:GBSFileWrapperContentsInaccessibleException reason:[NSString stringWithFormat:@"The file at %@ cannot be accessed: %@.", self.URL.absoluteString, error.localizedDescription] userInfo:@{ NSUnderlyingErrorKey: error }]; \
 }
 
 @interface GBSFileWrapperURLDataSource : NSObject <GBSFileWrapperDataSource>
@@ -38,12 +38,12 @@ NSString * const GBSFileWrapperURLInvalidException = @"GBSFileWrapperURLInvalid"
                 [self loadContents];
             }
             @catch (NSException *exception) {
-                if(![exception.name isEqualToString:GBSFileWrapperURLInvalidException]) {
+                if(![exception.name isEqualToString:GBSFileWrapperContentsInaccessibleException]) {
                     @throw;
                 }
                 
                 if(error) {
-                    *error = exception.userInfo[@"NSError"];
+                    *error = exception.userInfo[NSUnderlyingErrorKey];
                 }
                 return nil;
             }
