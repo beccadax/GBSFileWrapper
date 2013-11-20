@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8493D6EB183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 8493D6E9183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.h */; };
+		8493D6EC183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493D6EA183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.m */; };
 		84EBDC35182F65490092D8D8 /* GBSFileWrapperURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBDC34182F65490092D8D8 /* GBSFileWrapperURLTests.m */; };
 		84EBDC38182F6A290092D8D8 /* GBSMutableFileWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 84EBDC36182F6A290092D8D8 /* GBSMutableFileWrapper.h */; };
 		84EBDC39182F6A290092D8D8 /* GBSMutableFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBDC37182F6A290092D8D8 /* GBSMutableFileWrapper.m */; };
@@ -47,6 +49,8 @@
 /* Begin PBXFileReference section */
 		842C497C183316B200B14B07 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8493D6E718335E7B006DE61D /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		8493D6E9183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+subdictionaryWithKeys.h"; sourceTree = "<group>"; };
+		8493D6EA183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+subdictionaryWithKeys.m"; sourceTree = "<group>"; };
 		84EBDC34182F65490092D8D8 /* GBSFileWrapperURLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSFileWrapperURLTests.m; sourceTree = "<group>"; };
 		84EBDC36182F6A290092D8D8 /* GBSMutableFileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBSMutableFileWrapper.h; sourceTree = "<group>"; };
 		84EBDC37182F6A290092D8D8 /* GBSMutableFileWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSMutableFileWrapper.m; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				84FD4D5817F4EF9900EFC2D3 /* Supporting Files */,
 				84FD4D9417F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h */,
 				84FD4D9517F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.m */,
+				8493D6E9183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.h */,
+				8493D6EA183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.m */,
 			);
 			path = GBSFileWrapper;
 			sourceTree = "<group>";
@@ -210,6 +216,7 @@
 				84FD4D9217F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h in Headers */,
 				84FD4D9617F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h in Headers */,
 				84FD4D8817F4F3C100EFC2D3 /* GBSFileWrapper.h in Headers */,
+				8493D6EB183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.h in Headers */,
 				84FD4D8E17F4F4E400EFC2D3 /* GBSFileWrapperContents.h in Headers */,
 				84FD4D9E17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h in Headers */,
 				84FD4D8917F4F3C800EFC2D3 /* GBSFileWrapperDefines.h in Headers */,
@@ -312,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FD4D9B17F5451800EFC2D3 /* GBSFileWrapper+URL.m in Sources */,
+				8493D6EC183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.m in Sources */,
 				84FD4D9F17F54B2800EFC2D3 /* GBSFileWrapper+Memory.m in Sources */,
 				84FD4D8F17F4F4E400EFC2D3 /* GBSFileWrapperContents.m in Sources */,
 				84EBDC39182F6A290092D8D8 /* GBSMutableFileWrapper.m in Sources */,
