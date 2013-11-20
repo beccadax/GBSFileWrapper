@@ -14,7 +14,6 @@
 @interface GBSFileWrapper : NSObject <NSCopying, NSMutableCopying>
 
 // Designated initializer
-- (id)initWithDataSource:(id <GBSFileWrapperDataSource>)dataSource;
 - (id)initWithDataSource:(id <GBSFileWrapperDataSource>)dataSource resourceValues:(id <GBSFileWrapperResourceValues>)resourceValues;
 
 @property (readonly) id <GBSFileWrapperDataSource> dataSource;

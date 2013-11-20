@@ -17,10 +17,6 @@
 
 @implementation GBSFileWrapper
 
-- (id)initWithDataSource:(id<GBSFileWrapperDataSource>)dataSource {
-    return [self initWithDataSource:dataSource resourceValues:nil];
-}
-
 - (id)initWithDataSource:(id<GBSFileWrapperDataSource>)dataSource resourceValues:(id<GBSFileWrapperResourceValues>)resourceValues {
     NSParameterAssert(dataSource);
     
