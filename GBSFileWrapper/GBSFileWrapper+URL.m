@@ -131,7 +131,7 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
 
 - (id)initWithURL:(NSURL *)URL withoutMapping:(BOOL)mapping {
     if((self = [super init])) {
-        _URL = URL;
+        _URL = [URL fileReferenceURL] ?: URL;
         _withoutMapping = mapping;
     }
     return self;
