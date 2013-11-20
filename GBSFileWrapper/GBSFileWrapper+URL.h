@@ -16,7 +16,6 @@ typedef NS_OPTIONS(NSUInteger, GBSFileWrapperReadingOptions) {
 typedef NS_OPTIONS(NSUInteger, GBSFileWrapperWritingOptions) {
     GBSFileWrapperWritingAtomic = NSDataWritingAtomic,
     GBSFileWrapperWritingWithoutOverwriting = NSDataWritingWithoutOverwriting,
-    _GBSFileWrapperWritingWithoutResourceValueKeys = 1 << 30,   // For internal use only
 };
 
 /// Thrown if a GBSFileWrapper's underlying file can't be accessed when the contents property is first used. The exact error can be found in the userInfo's NSUnderlyingErrorKey key.

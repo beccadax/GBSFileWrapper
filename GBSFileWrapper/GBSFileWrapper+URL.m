@@ -91,40 +91,24 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
     }
 }
 
-- (BOOL)gbs_applyResourceValueKeys:(NSArray*)keys toURL:(NSURL*)URL error:(NSError**)error {
-    NSDictionary * values = [self resourceValuesForKeys:keys];
-    return [URL setResourceValues:values error:error];
-}
-
 - (BOOL)writeToURL:(NSURL *)URL withResourceValueKeys:(NSArray*)keys options:(GBSFileWrapperWritingOptions)options error:(NSError *__autoreleasing *)error {
     NSFileManager * manager = [NSFileManager new];
     
+    NSURL * writingURL = URL;
+    NSURL * tempDirURL;
+    
     if(options & GBSFileWrapperWritingAtomic) {
-        NSURL * tempDirURL = [manager URLForDirectory:NSItemReplacementDirectory inDomain:NSUserDomainMask appropriateForURL:URL create:YES error:error];
-        NSURL * tempURL = [tempDirURL URLByAppendingPathComponent:URL.lastPathComponent];
-        
-        BOOL writeOK = [self writeToURL:tempURL withResourceValueKeys:keys options:GBSFileWrapperWritingWithoutOverwriting | _GBSFileWrapperWritingWithoutResourceValueKeys error:error];
-        
-        [manager removeItemAtURL:tempDirURL error:NULL];
-        
-        if(!writeOK) {
-            return NO;
-        }
-        
-        if(![manager replaceItemAtURL:URL withItemAtURL:tempURL backupItemName:nil options:0 resultingItemURL:nil error:error]) {
-            return NO;
-        }
-        
-        return [self gbs_applyResourceValueKeys:keys toURL:URL error:error];
+        tempDirURL = [manager URLForDirectory:NSItemReplacementDirectory inDomain:NSUserDomainMask appropriateForURL:URL create:YES error:error];
+        writingURL = [tempDirURL URLByAppendingPathComponent:URL.lastPathComponent];
     }
     
     if(!(options & GBSFileWrapperWritingWithoutOverwriting)) {
-        [manager removeItemAtURL:URL error:NULL];
+        [manager removeItemAtURL:writingURL error:NULL];
     }
     
     switch (self.type) {
         case GBSFileWrapperTypeDirectory:
-            if(![manager createDirectoryAtURL:URL withIntermediateDirectories:NO attributes:nil error:error]) {
+            if(![manager createDirectoryAtURL:writingURL withIntermediateDirectories:NO attributes:nil error:error]) {
                 return NO;
             }
             
@@ -139,7 +123,7 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
             break;
             
         case GBSFileWrapperTypeRegularFile:
-            if(![self.contents writeToURL:URL options:0 error:error]) {
+            if(![self.contents writeToURL:writingURL options:0 error:error]) {
                 return NO;
             }
             break;
@@ -147,7 +131,7 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
         case GBSFileWrapperTypeSymbolicLink: {
             NSURL * relativeContents = [NSURL URLWithString:[self.contents relativePath] relativeToURL:nil];
             
-            if(![manager createSymbolicLinkAtURL:URL withDestinationURL:relativeContents error:error]) {
+            if(![manager createSymbolicLinkAtURL:writingURL withDestinationURL:relativeContents error:error]) {
                 return NO;
             }
             
@@ -159,7 +143,16 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
             return NO;
     }
     
-    return options & _GBSFileWrapperWritingWithoutResourceValueKeys ? YES : [self gbs_applyResourceValueKeys:keys toURL:URL error:error];
+    if(tempDirURL) {
+        if(![manager replaceItemAtURL:URL withItemAtURL:writingURL backupItemName:nil options:NSFileManagerItemReplacementUsingNewMetadataOnly resultingItemURL:nil error:error]) {
+            return NO;
+        }        
+        
+        [manager removeItemAtURL:tempDirURL error:NULL];
+    }
+    
+    NSDictionary * values = [self resourceValuesForKeys:keys];
+    return [URL setResourceValues:values error:error];
 }
 
 @end
