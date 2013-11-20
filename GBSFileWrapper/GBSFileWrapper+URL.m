@@ -64,8 +64,51 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
 }
 
 - (BOOL)writeToURL:(NSURL *)URL options:(GBSFileWrapperWritingOptions)options error:(NSError *__autoreleasing *)error {
-    NSFileWrapper * wrapper = [self NSFileWrapper];
-    return [wrapper writeToURL:URL options:(NSFileWrapperWritingOptions)options originalContentsURL:nil error:error];
+    NSAssert(!(options & GBSFileWrapperWritingAtomic), @"Atomic writes not yet implemented");
+    
+    NSFileManager * manager = [NSFileManager new];
+    
+    if(!(options & GBSFileWrapperWritingWithoutOverwriting)) {
+        [manager removeItemAtURL:URL error:NULL];
+    }
+    
+    switch (self.type) {
+        case GBSFileWrapperTypeDirectory:
+            if(![manager createDirectoryAtURL:URL withIntermediateDirectories:NO attributes:nil error:error]) {
+                return NO;
+            }
+            
+            for(NSString * name in self.contents) {
+                GBSFileWrapper * child = self.contents[name];
+                
+                if(![child writeToURL:[URL URLByAppendingPathComponent:name] options:0 error:error]) {
+                    return NO;
+                }
+            }
+            
+            break;
+            
+        case GBSFileWrapperTypeRegularFile:
+            if(![self.contents writeToURL:URL options:0 error:error]) {
+                return NO;
+            }
+            break;
+            
+        case GBSFileWrapperTypeSymbolicLink: {
+            NSURL * relativeContents = [NSURL URLWithString:[self.contents relativePath] relativeToURL:nil];
+            
+            if(![manager createSymbolicLinkAtURL:URL withDestinationURL:relativeContents error:error]) {
+                return NO;
+            }
+            
+            break;
+        }
+            
+        case GBSFileWrapperTypeNil:
+            NSAssert(self.type != GBSFileWrapperTypeNil, @"Attempted to write a nil file wrapper");
+    }
+    
+    return YES;
 }
 
 @end

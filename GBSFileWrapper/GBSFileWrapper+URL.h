@@ -10,12 +10,12 @@
 
 typedef NS_OPTIONS(NSUInteger, GBSFileWrapperReadingOptions) {
     GBSFileWrapperReadingImmediate = NSFileWrapperReadingImmediate,
-    GBSFileWrapperReadingWithoutMapping = NSFileWrapperReadingWithoutMapping
+    GBSFileWrapperReadingWithoutMapping = NSFileWrapperReadingWithoutMapping,
 };
 
 typedef NS_OPTIONS(NSUInteger, GBSFileWrapperWritingOptions) {
-    GBSFileWrapperWritingAtomic = NSFileWrapperWritingAtomic,
-    
+    GBSFileWrapperWritingAtomic = NSDataWritingAtomic,
+    GBSFileWrapperWritingWithoutOverwriting = NSDataWritingWithoutOverwriting,
 };
 
 /// Thrown if a GBSFileWrapper's underlying file can't be accessed when the contents property is first used. The exact error can be found in the userInfo's NSUnderlyingErrorKey key.
