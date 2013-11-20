@@ -23,6 +23,12 @@ extern NSString * const GBSFileWrapperContentsInaccessibleException;
 
 @interface GBSFileWrapper (URL)
 
+/// Includes all resource value keys that can be modified.
++ (NSArray*)writableResourceValueKeys;
+
+/// Includes the contents of +writableResourceValueKeys, excluding modification and access dates.
++ (NSArray*)persistentResourceValueKeys;
+
 - (id)initWithURL:(NSURL*)URL options:(GBSFileWrapperReadingOptions)options error:(NSError**)error;
 
 - (BOOL)writeToURL:(NSURL*)URL options:(GBSFileWrapperWritingOptions)options error:(NSError**)error;

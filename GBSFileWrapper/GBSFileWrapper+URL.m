@@ -27,6 +27,32 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
 
 @implementation GBSFileWrapper (URL)
 
++ (NSArray *)writableResourceValueKeys {
+    static NSArray * singleton;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        singleton = @[ NSURLIsSystemImmutableKey, NSURLIsUserImmutableKey, NSURLIsHiddenKey, NSURLHasHiddenExtensionKey, NSURLCreationDateKey, NSURLContentAccessDateKey, NSURLContentModificationDateKey, NSURLAttributeModificationDateKey, NSURLCustomIconKey, NSURLFileSecurityKey, NSURLIsExcludedFromBackupKey, NSURLTagNamesKey ];
+    });
+    
+    return singleton;
+}
+
++ (NSArray *)persistentResourceValueKeys {
+    static NSArray * singleton;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        NSIndexSet * indexes = [[self writableResourceValueKeys] indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            return ![@[ NSURLContentAccessDateKey, NSURLContentModificationDateKey, NSURLAttributeModificationDateKey ] containsObject:obj];
+        }];
+        
+        singleton = [[self writableResourceValueKeys] objectsAtIndexes:indexes];
+    });
+    
+    return singleton;
+}
+
 - (id)initWithURL:(NSURL *)URL options:(GBSFileWrapperReadingOptions)options error:(NSError *__autoreleasing *)error {
     if(![URL checkResourceIsReachableAndReturnError:error]) {
         return nil;
