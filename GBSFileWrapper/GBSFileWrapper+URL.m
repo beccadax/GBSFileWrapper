@@ -64,9 +64,23 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
 }
 
 - (BOOL)writeToURL:(NSURL *)URL options:(GBSFileWrapperWritingOptions)options error:(NSError *__autoreleasing *)error {
-    NSAssert(!(options & GBSFileWrapperWritingAtomic), @"Atomic writes not yet implemented");
-    
     NSFileManager * manager = [NSFileManager new];
+    
+    if(options & GBSFileWrapperWritingAtomic) {
+        NSURL * tempDirURL = [manager URLForDirectory:NSItemReplacementDirectory inDomain:NSUserDomainMask appropriateForURL:URL create:YES error:error];
+        NSURL * tempURL = [tempDirURL URLByAppendingPathComponent:URL.lastPathComponent];
+        
+        BOOL writeOK = [self writeToURL:tempURL options:GBSFileWrapperWritingWithoutOverwriting error:error];
+        
+        [manager removeItemAtURL:tempDirURL error:NULL];
+        
+        if(!writeOK) {
+            return NO;
+        }
+        
+        return [manager replaceItemAtURL:URL withItemAtURL:tempURL backupItemName:nil options:0 resultingItemURL:nil error:error]; 
+    }
+    
     
     if(!(options & GBSFileWrapperWritingWithoutOverwriting)) {
         [manager removeItemAtURL:URL error:NULL];
