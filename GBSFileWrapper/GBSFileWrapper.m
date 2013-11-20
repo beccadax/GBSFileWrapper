@@ -83,13 +83,15 @@
 
 - (NSDictionary *)resourceValuesForKeys:(NSArray *)keys {
     NSArray * newKeys;
-    NSMutableDictionary * ret = [[self.cachedResourceValues subdictionaryWithKeys:keys notFoundKeys:&newKeys] mutableCopy];
+    NSMutableDictionary * values = [[self.cachedResourceValues subdictionaryWithKeys:keys notFoundKeys:&newKeys] mutableCopy];
     
     if(newKeys.count) {
-        [self.cachedResourceValues addEntriesFromDictionary:[self.resourceValues resourceValuesForKeys:newKeys]];
+        NSDictionary * newValues = [self.resourceValues resourceValuesForKeys:newKeys];
+        [self.cachedResourceValues addEntriesFromDictionary:newValues];
+        [values addEntriesFromDictionary:newValues];
     }
     
-    return ret;
+    return values;
 }
 
 @end
