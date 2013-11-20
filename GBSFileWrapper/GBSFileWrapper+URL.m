@@ -91,14 +91,19 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
     }
 }
 
-- (BOOL)writeToURL:(NSURL *)URL options:(GBSFileWrapperWritingOptions)options error:(NSError *__autoreleasing *)error {
+- (BOOL)gbs_applyResourceValueKeys:(NSArray*)keys toURL:(NSURL*)URL error:(NSError**)error {
+    NSDictionary * values = [self resourceValuesForKeys:keys];
+    return [URL setResourceValues:values error:error];
+}
+
+- (BOOL)writeToURL:(NSURL *)URL withResourceValueKeys:(NSArray*)keys options:(GBSFileWrapperWritingOptions)options error:(NSError *__autoreleasing *)error {
     NSFileManager * manager = [NSFileManager new];
     
     if(options & GBSFileWrapperWritingAtomic) {
         NSURL * tempDirURL = [manager URLForDirectory:NSItemReplacementDirectory inDomain:NSUserDomainMask appropriateForURL:URL create:YES error:error];
         NSURL * tempURL = [tempDirURL URLByAppendingPathComponent:URL.lastPathComponent];
         
-        BOOL writeOK = [self writeToURL:tempURL options:GBSFileWrapperWritingWithoutOverwriting error:error];
+        BOOL writeOK = [self writeToURL:tempURL withResourceValueKeys:keys options:GBSFileWrapperWritingWithoutOverwriting | _GBSFileWrapperWritingWithoutResourceValueKeys error:error];
         
         [manager removeItemAtURL:tempDirURL error:NULL];
         
@@ -106,9 +111,12 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
             return NO;
         }
         
-        return [manager replaceItemAtURL:URL withItemAtURL:tempURL backupItemName:nil options:0 resultingItemURL:nil error:error]; 
+        if(![manager replaceItemAtURL:URL withItemAtURL:tempURL backupItemName:nil options:0 resultingItemURL:nil error:error]) {
+            return NO;
+        }
+        
+        return [self gbs_applyResourceValueKeys:keys toURL:URL error:error];
     }
-    
     
     if(!(options & GBSFileWrapperWritingWithoutOverwriting)) {
         [manager removeItemAtURL:URL error:NULL];
@@ -123,7 +131,7 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
             for(NSString * name in self.contents) {
                 GBSFileWrapper * child = self.contents[name];
                 
-                if(![child writeToURL:[URL URLByAppendingPathComponent:name] options:0 error:error]) {
+                if(![child writeToURL:[URL URLByAppendingPathComponent:name] withResourceValueKeys:keys options:0 error:error]) {
                     return NO;
                 }
             }
@@ -148,9 +156,10 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
             
         case GBSFileWrapperTypeNil:
             NSAssert(self.type != GBSFileWrapperTypeNil, @"Attempted to write a nil file wrapper");
+            return NO;
     }
     
-    return YES;
+    return options & _GBSFileWrapperWritingWithoutResourceValueKeys ? YES : [self gbs_applyResourceValueKeys:keys toURL:URL error:error];
 }
 
 @end
