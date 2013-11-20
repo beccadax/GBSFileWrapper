@@ -11,7 +11,7 @@
 
 NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperContentsInaccessible";
 #define GBSAssertSucceeded(operation, error) if(!(operation)) { \
-@throw [NSException exceptionWithName:GBSFileWrapperContentsInaccessibleException reason:[NSString stringWithFormat:@"The file at %@ cannot be accessed: %@.", self.URL.absoluteString, error.localizedDescription] userInfo:@{ NSUnderlyingErrorKey: error }]; \
+@throw [NSException exceptionWithName:GBSFileWrapperContentsInaccessibleException reason:[NSString stringWithFormat:@"The file at %@ cannot be accessed: %@.", self.URL.filePathURL.absoluteString, error.localizedDescription] userInfo:@{ NSUnderlyingErrorKey: error }]; \
 }
 
 @interface GBSFileWrapperURLDataSource : NSObject <GBSFileWrapperDataSource>
