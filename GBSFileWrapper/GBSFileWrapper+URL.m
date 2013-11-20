@@ -23,6 +23,8 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
 
 @end
 
+@interface NSURL (GBSFileWrapperResourceValues) <GBSFileWrapperResourceValues> @end
+
 @implementation GBSFileWrapper (URL)
 
 - (id)initWithURL:(NSURL *)URL options:(GBSFileWrapperReadingOptions)options error:(NSError *__autoreleasing *)error {
@@ -32,7 +34,7 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
     
     GBSFileWrapperURLDataSource * dataSource = [[GBSFileWrapperURLDataSource alloc] initWithURL:URL withoutMapping:(options & GBSFileWrapperReadingWithoutMapping)];
     
-    if((self = [self initWithDataSource:dataSource])) {
+    if((self = [self initWithDataSource:dataSource resourceValues:[URL fileReferenceURL]])) {
         if(options & GBSFileWrapperReadingImmediate) {
             @try {
                 [self loadContents];
@@ -229,6 +231,26 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
 
 - (void)removeAllDirectoryContents {
     [self doesNotRecognizeSelector:_cmd];
+}
+
+@end
+
+@implementation NSURL (GBSFileWrapperResourceValues)
+
+- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys {
+    NSError * error;
+    NSDictionary * values = [self resourceValuesForKeys:keys error:&error];
+    GBSAssertSucceeded(values, error);
+    
+    return values;
+}
+
+- (id<GBSFileWrapperResourceValues>)copyFromFileWrapper:(GBSFileWrapper *)fileWrapper {
+    return self;
+}
+
+- (NSURL*)URL {
+    return self;
 }
 
 @end
