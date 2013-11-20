@@ -178,7 +178,7 @@ NSString * const GBSFileWrapperContentsInaccessibleException = @"GBSFileWrapperC
         GBSFileWrapper * wrapper = [(GBSFileWrapper*)[fileWrapper.class alloc] initWithURL:childURL options:self.withoutMapping ? GBSFileWrapperReadingWithoutMapping : 0 error:&error];
         
         if(wrapper) {
-            contents[childURL.lastPathComponent] = wrapper;
+            contents[childURL.filePathURL.lastPathComponent] = wrapper;
         }
         else {
             ok = NO;
