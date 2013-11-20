@@ -10,7 +10,7 @@
 
 @interface GBSFileWrapper (Memory)
 
-- (id)initWithContents:(id <GBSFileWrapperContents>)contents resourceValues:(NSDictionary*)resourceValues;
+- (id)initWithContents:(id <GBSFileWrapperContents>)contents resourceValues:(id <GBSFileWrapperResourceValues>)resourceValues;
 - (id)init;
 
 @end

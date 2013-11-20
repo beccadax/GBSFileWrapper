@@ -14,10 +14,10 @@
     return [self initWithContents:nil resourceValues:nil];
 }
 
-- (id)initWithContents:(id<GBSFileWrapperContents>)contents resourceValues:(NSDictionary *)resourceValues {
+- (id)initWithContents:(id<GBSFileWrapperContents>)contents resourceValues:(id <GBSFileWrapperResourceValues>)resourceValues {
     GBSFileWrapperMemoryDataSource * source = [[GBSFileWrapperMemoryDataSource alloc] initWithContents:contents];
     
-    return [self initWithDataSource:source];
+    return [self initWithDataSource:source resourceValues:resourceValues];
 }
 
 @end

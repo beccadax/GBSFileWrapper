@@ -31,3 +31,17 @@
 }
 
 @end
+
+#import "NSDictionary+subdictionaryWithKeys.h"
+
+@implementation NSDictionary (GBSFileWrapperResourceValues)
+
+- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys {
+    return [self subdictionaryWithKeys:keys notFoundKeys:NULL];
+}
+
+- (id<GBSFileWrapperResourceValues>)copyFromFileWrapper:(GBSFileWrapper *)fileWrapper {
+    return [self copy];
+}
+
+@end

@@ -33,3 +33,10 @@
 - (void)removeAllDirectoryContents;
 
 @end
+
+@protocol GBSFileWrapperResourceValues <NSObject>
+
+- (id <GBSFileWrapperResourceValues>)copyFromFileWrapper:(GBSFileWrapper*)fileWrapper;
+- (NSDictionary*)resourceValuesForKeys:(NSArray*)keys;
+
+@end

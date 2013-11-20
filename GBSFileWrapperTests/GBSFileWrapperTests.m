@@ -35,14 +35,11 @@
     
     XCTAssertEqualObjects(wrapper.contents, data, @"GBSFileWrapper preserves contents correctly");
     
-#if 0
-    NSFileSecurity * security;
-    XCTAssertTrue([wrapper getResourceValue:&security forKey:NSURLFileSecurityKey error:NULL], @"Fetched security object successfully");
-    XCTAssertNotNil(wrapper, @"Actually got a security object");
+    NSFileSecurity * security = [wrapper resourceValueForKey:NSURLFileSecurityKey];
+    XCTAssertNotNil(security, @"Fetched security object successfully");
     
     XCTAssertNotNil(security.POSIXMode, @"Can get POSIX mode");
     XCTAssertEqual((mode_t)security.POSIXMode.integerValue, (mode_t)0644, @"POSIX mode is correct");
-#endif
 }
 
 - (void)testDirectory {

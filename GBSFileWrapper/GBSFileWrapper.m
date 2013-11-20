@@ -7,14 +7,28 @@
 //
 
 #import "GBSFileWrapper.h"
+#import "NSDictionary+subdictionaryWithKeys.h"
+
+@interface GBSFileWrapper ()
+
+@property (readonly) NSMutableDictionary * cachedResourceValues;
+
+@end
 
 @implementation GBSFileWrapper
 
 - (id)initWithDataSource:(id<GBSFileWrapperDataSource>)dataSource {
+    return [self initWithDataSource:dataSource resourceValues:nil];
+}
+
+- (id)initWithDataSource:(id<GBSFileWrapperDataSource>)dataSource resourceValues:(id<GBSFileWrapperResourceValues>)resourceValues {
     NSParameterAssert(dataSource);
     
     if((self = [super init])) {
         _dataSource = dataSource;
+        _resourceValues = resourceValues;
+        
+        _cachedResourceValues = [NSMutableDictionary new];
     }
     return self;
 }
@@ -48,7 +62,7 @@
 }
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
-    return [[GBSMutableFileWrapper alloc] initWithDataSource:[self.dataSource copyFromFileWrapper:self]];
+    return [[GBSMutableFileWrapper alloc] initWithDataSource:[self.dataSource copyFromFileWrapper:self] resourceValues:[self.resourceValues copyFromFileWrapper:self]];
 }
 
 - (NSUInteger)hash {
@@ -65,6 +79,21 @@
     }
     
     return self.type == object.type && [self.contents isEqual:object.contents];
+}
+
+- (id)resourceValueForKey:(NSString *)key {
+    return [self resourceValuesForKeys:@[ key ]][key];
+}
+
+- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys {
+    NSArray * newKeys;
+    NSMutableDictionary * ret = [[self.cachedResourceValues subdictionaryWithKeys:keys notFoundKeys:&newKeys] mutableCopy];
+    
+    if(newKeys.count) {
+        [self.cachedResourceValues addEntriesFromDictionary:[self.resourceValues resourceValuesForKeys:newKeys]];
+    }
+    
+    return ret;
 }
 
 @end
