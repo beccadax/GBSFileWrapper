@@ -10,7 +10,7 @@
 		8493D6EB183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 8493D6E9183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.h */; };
 		8493D6EC183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8493D6EA183C5596006DE61D /* NSDictionary+subdictionaryWithKeys.m */; };
 		84EBDC35182F65490092D8D8 /* GBSFileWrapperURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBDC34182F65490092D8D8 /* GBSFileWrapperURLTests.m */; };
-		84EBDC38182F6A290092D8D8 /* GBSMutableFileWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 84EBDC36182F6A290092D8D8 /* GBSMutableFileWrapper.h */; };
+		84EBDC38182F6A290092D8D8 /* GBSMutableFileWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 84EBDC36182F6A290092D8D8 /* GBSMutableFileWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84EBDC39182F6A290092D8D8 /* GBSMutableFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBDC37182F6A290092D8D8 /* GBSMutableFileWrapper.m */; };
 		84EBDC3B18307FC10092D8D8 /* GBSMutableFileWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBDC3A18307FC10092D8D8 /* GBSMutableFileWrapperTests.m */; };
 		84FD4D5217F4EF9900EFC2D3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FD4D5117F4EF9900EFC2D3 /* Cocoa.framework */; };
@@ -26,13 +26,13 @@
 		84FD4D8917F4F3C800EFC2D3 /* GBSFileWrapperDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D8617F4F0C000EFC2D3 /* GBSFileWrapperDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84FD4D8E17F4F4E400EFC2D3 /* GBSFileWrapperContents.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D8C17F4F4E400EFC2D3 /* GBSFileWrapperContents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84FD4D8F17F4F4E400EFC2D3 /* GBSFileWrapperContents.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D8D17F4F4E400EFC2D3 /* GBSFileWrapperContents.m */; };
-		84FD4D9217F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9017F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h */; };
+		84FD4D9217F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9017F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84FD4D9317F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D9117F4F7E200EFC2D3 /* GBSFileWrapper+NSFileWrapper.m */; };
-		84FD4D9617F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9417F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h */; };
+		84FD4D9617F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9417F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84FD4D9717F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D9517F5255E00EFC2D3 /* NSFileSecurity+GBSExtensions.m */; };
-		84FD4D9A17F5451800EFC2D3 /* GBSFileWrapper+URL.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9817F5451800EFC2D3 /* GBSFileWrapper+URL.h */; };
+		84FD4D9A17F5451800EFC2D3 /* GBSFileWrapper+URL.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9817F5451800EFC2D3 /* GBSFileWrapper+URL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84FD4D9B17F5451800EFC2D3 /* GBSFileWrapper+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D9917F5451800EFC2D3 /* GBSFileWrapper+URL.m */; };
-		84FD4D9E17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9C17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h */; };
+		84FD4D9E17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 84FD4D9C17F54B2800EFC2D3 /* GBSFileWrapper+Memory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84FD4D9F17F54B2800EFC2D3 /* GBSFileWrapper+Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD4D9D17F54B2800EFC2D3 /* GBSFileWrapper+Memory.m */; };
 /* End PBXBuildFile section */
 
