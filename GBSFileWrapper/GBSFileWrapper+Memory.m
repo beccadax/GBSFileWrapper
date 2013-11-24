@@ -14,10 +14,10 @@
     return [self initWithContents:nil resourceValues:nil];
 }
 
-- (id)initWithContents:(id<GBSFileWrapperContents>)contents resourceValues:(NSDictionary *)resourceValues {
-    GBSFileWrapperMemoryDataSource * source = [[GBSFileWrapperMemoryDataSource alloc] initWithContents:contents resourceValues:resourceValues];
+- (id)initWithContents:(id<GBSFileWrapperContents>)contents resourceValues:(id <GBSFileWrapperResourceValues>)resourceValues {
+    GBSFileWrapperMemoryDataSource * source = [[GBSFileWrapperMemoryDataSource alloc] initWithContents:contents];
     
-    return [self initWithDataSource:source];
+    return [self initWithDataSource:source resourceValues:resourceValues];
 }
 
 @end
@@ -25,28 +25,24 @@
 @interface GBSFileWrapperMemoryDataSource ()
 
 @property (strong) id <GBSFileWrapperContents> contents;
-@property (strong) NSDictionary * resourceValues; 
 
 @end
 
 @interface GBSFileWrapperMemoryMutableDataSource : GBSFileWrapperMemoryDataSource
 
-@property (strong) NSMutableDictionary * resourceValues; 
-
 @end
 
 @implementation GBSFileWrapperMemoryDataSource
 
-- (id)initWithContents:(id<GBSFileWrapperContents>)contents resourceValues:(NSDictionary *)resourceValues {
+- (id)initWithContents:(id<GBSFileWrapperContents>)contents {
     if((self = [super init])) {
         _contents = contents;
-        _resourceValues = resourceValues;
     }
     return self;
 }
 
 - (id)init {
-    return [self initWithContents:nil resourceValues:@{}];
+    return [self initWithContents:nil];
 }
 
 - (GBSFileWrapperType)typeForFileWrapper:(GBSFileWrapper *)fileWrapper {
@@ -65,21 +61,12 @@
     return (id)self.contents;
 }
 
-- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys error:(NSError *__autoreleasing *)error {
-    NSArray * objects = [self.resourceValues objectsForKeys:keys notFoundMarker:[NSNull null]];
-    
-    NSMutableDictionary * dict = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];
-    [dict removeObjectsForKeys:[dict allKeysForObject:[NSNull null]]];
-    
-    return dict;
-}
-
 - (id<GBSFileWrapperDataSource>)copyFromFileWrapper:(GBSFileWrapper *)fileWrapper {
     return self;
 }
 
 - (GBSFileWrapperMemoryMutableDataSource*)substituteIntoFileWrapper:(GBSFileWrapper*)fileWrapper {
-    GBSFileWrapperMemoryMutableDataSource * mutableDataSource = [[GBSFileWrapperMemoryMutableDataSource alloc] initWithContents:self.contents resourceValues:self.resourceValues];
+    GBSFileWrapperMemoryMutableDataSource * mutableDataSource = [[GBSFileWrapperMemoryMutableDataSource alloc] initWithContents:self.contents];
     
     [fileWrapper substituteEquivalentDataSource:mutableDataSource];
     
@@ -110,25 +97,19 @@
     [[self substituteIntoFileWrapper:fileWrapper] setNilContentsForFileWrapper:fileWrapper];
 }
 
-- (void)updateResourceValues:(NSDictionary *)values forFileWrapper:(GBSFileWrapper *)fileWrapper {
-    [[self substituteIntoFileWrapper:fileWrapper] updateResourceValues:values forFileWrapper:fileWrapper];
-}
-
 @end
 
 @implementation GBSFileWrapperMemoryMutableDataSource
-
-@dynamic resourceValues;
 
 - (id)initWithContents:(id<GBSFileWrapperContents>)contents resourceValues:(NSDictionary *)resourceValues {
     contents = [contents typeForFileWrapper:nil] == GBSFileWrapperTypeDirectory ? [(id)contents mutableCopy] : contents;
     resourceValues = [resourceValues mutableCopy];
     
-    return [super initWithContents:contents resourceValues:resourceValues];
+    return [super initWithContents:contents];
 }
 
 - (id<GBSFileWrapperDataSource>)copyFromFileWrapper:(GBSFileWrapper *)fileWrapper {
-    return [[GBSFileWrapperMemoryMutableDataSource alloc] initWithContents:self.contents resourceValues:self.resourceValues];
+    return [[GBSFileWrapperMemoryMutableDataSource alloc] initWithContents:self.contents];
 }
 
 - (GBSFileWrapperMemoryMutableDataSource*)substituteIntoFileWrapper:(GBSFileWrapper*)fileWrapper {
@@ -166,11 +147,6 @@
 
 - (void)setNilContentsForFileWrapper:(GBSFileWrapper *)fileWrapper {
     self.contents = nil;
-}
-
-- (void)updateResourceValues:(NSDictionary *)values forFileWrapper:(GBSFileWrapper *)fileWrapper {
-    [self.resourceValues addEntriesFromDictionary:values];
-    [self.resourceValues removeObjectsForKeys:[self.resourceValues allKeysForObject:[NSNull null]]];
 }
 
 @end

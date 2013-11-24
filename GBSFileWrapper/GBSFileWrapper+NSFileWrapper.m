@@ -12,14 +12,14 @@
 #import <pwd.h>
 #import <grp.h>
 
-@interface NSFileWrapper (GBSFileWrapperDataSource) <GBSFileWrapperDataSource>
+@interface NSFileWrapper (GBSFileWrapperDataSource) <GBSFileWrapperDataSource, GBSFileWrapperResourceValues>
 
 @end
 
 @implementation GBSFileWrapper (NSFileWrapper)
 
 - (id)initWithNSFileWrapper:(NSFileWrapper *)nsFileWrapper {
-    return [self initWithDataSource:nsFileWrapper];
+    return [self initWithDataSource:nsFileWrapper resourceValues:nsFileWrapper];
 }
 
 - (NSFileWrapper *)NSFileWrapper {
@@ -56,13 +56,13 @@
     
     NSMutableDictionary * attrs = [NSMutableDictionary new];
     
-    NSNumber * noExtension;
-    if([self getResourceValue:&noExtension forKey:NSURLHasHiddenExtensionKey error:NULL]) {
+    NSNumber * noExtension = [self resourceValueForKey:NSURLHasHiddenExtensionKey];
+    if(noExtension) {
         attrs[NSFileExtensionHidden] = noExtension;
     }
     
-    NSFileSecurity * security;
-    if([self getResourceValue:&security forKey:NSURLFileSecurityKey error:NULL]) {
+    NSFileSecurity * security = [self resourceValueForKey:NSURLFileSecurityKey];
+    if(security) {
         NSNumber * mode = security.POSIXMode;
         if(mode) {
             attrs[NSFilePosixPermissions] = mode;
@@ -141,32 +141,12 @@
     return childGBSWrappers;
 }
 
-- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys error:(NSError *__autoreleasing *)error {
-    NSMutableDictionary * dict = [NSMutableDictionary new];
-    
-    for(NSString * key in keys) {
-        if([key isEqualToString:NSURLHasHiddenExtensionKey]) {
-            dict[NSURLHasHiddenExtensionKey] = self.fileAttributes[NSFileExtensionHidden];
-        }
-        else if([key isEqualToString:NSURLFileSecurityKey]) {
-            dict[NSURLFileSecurityKey] = [[NSFileSecurity alloc] initWithPOSIXMode:self.fileAttributes[NSFilePosixPermissions] owner:self.fileAttributes[NSFileOwnerAccountID] group:self.fileAttributes[NSFileGroupOwnerAccountID]];
-        }
-        else {
-            NSAssert(NO, @"The resource value key %@ is not yet supported.", key);
-        }
-    }
-    
-    return dict;
-}
-
 - (id<GBSFileWrapperDataSource>)copyFromFileWrapper:(GBSFileWrapper *)fileWrapper {
     return self;
 }
 
 - (GBSFileWrapperMemoryDataSource*)substituteIntoFileWrapper:(GBSFileWrapper*)fileWrapper {
     id <GBSFileWrapperContents> contents;
-    NSDictionary * resourceValues = [self resourceValuesForKeys:@[ NSURLHasHiddenExtensionKey, NSURLFileSecurityKey ] error:NULL];
-    
     switch ([self typeForFileWrapper:fileWrapper]) {
         case GBSFileWrapperTypeDirectory:
             contents = [self directoryContentsForFileWrapper:fileWrapper];
@@ -185,7 +165,7 @@
             break;
     }
     
-    GBSFileWrapperMemoryDataSource * mutableDataSource = [[GBSFileWrapperMemoryDataSource alloc] initWithContents:contents resourceValues:resourceValues];
+    GBSFileWrapperMemoryDataSource * mutableDataSource = [[GBSFileWrapperMemoryDataSource alloc] initWithContents:contents];
     
     [fileWrapper substituteEquivalentDataSource:mutableDataSource];
     
@@ -216,8 +196,22 @@
     [[self substituteIntoFileWrapper:fileWrapper] setNilContentsForFileWrapper:fileWrapper];
 }
 
-- (void)updateResourceValues:(NSDictionary *)values forFileWrapper:(GBSFileWrapper *)fileWrapper {
-    [[self substituteIntoFileWrapper:fileWrapper] updateResourceValues:values forFileWrapper:fileWrapper];
+- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys {
+    NSMutableDictionary * dict = [NSMutableDictionary new];
+    
+    for(NSString * key in keys) {
+        if([key isEqualToString:NSURLHasHiddenExtensionKey]) {
+            dict[NSURLHasHiddenExtensionKey] = self.fileAttributes[NSFileExtensionHidden];
+        }
+        else if([key isEqualToString:NSURLFileSecurityKey]) {
+            dict[NSURLFileSecurityKey] = [[NSFileSecurity alloc] initWithPOSIXMode:self.fileAttributes[NSFilePosixPermissions] owner:self.fileAttributes[NSFileOwnerAccountID] group:self.fileAttributes[NSFileGroupOwnerAccountID]];
+        }
+        else {
+            NSAssert(NO, @"The resource value key %@ is not yet supported.", key);
+        }
+    }
+    
+    return dict;
 }
 
 @end

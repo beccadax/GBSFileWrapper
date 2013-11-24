@@ -7,14 +7,24 @@
 //
 
 #import "GBSFileWrapper.h"
+#import "NSDictionary+subdictionaryWithKeys.h"
+
+@interface GBSFileWrapper ()
+
+@property (readonly) NSMutableDictionary * cachedResourceValues;
+
+@end
 
 @implementation GBSFileWrapper
 
-- (id)initWithDataSource:(id<GBSFileWrapperDataSource>)dataSource {
+- (id)initWithDataSource:(id<GBSFileWrapperDataSource>)dataSource resourceValues:(id<GBSFileWrapperResourceValues>)resourceValues {
     NSParameterAssert(dataSource);
     
     if((self = [super init])) {
         _dataSource = dataSource;
+        _resourceValues = resourceValues;
+        
+        _cachedResourceValues = [NSMutableDictionary new];
     }
     return self;
 }
@@ -43,26 +53,12 @@
     }
 }
 
-- (BOOL)getResourceValue:(out id *)value forKey:(NSString *)key error:(out NSError **)error {
-    NSDictionary * dict = [self resourceValuesForKeys:@[ key ] error:error];
-    if(!dict) {
-        return NO;
-    }
-        
-    *value = dict[key];
-    return YES;
-}
-
-- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys error:(NSError **)error {
-    return [self.dataSource resourceValuesForKeys:keys error:error];
-}
-
 - (id)copyWithZone:(NSZone *)zone {
     return self;
 }
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
-    return [[GBSMutableFileWrapper alloc] initWithDataSource:[self.dataSource copyFromFileWrapper:self]];
+    return [[GBSMutableFileWrapper alloc] initWithDataSource:[self.dataSource copyFromFileWrapper:self] resourceValues:[self.resourceValues copyFromFileWrapper:self]];
 }
 
 - (NSUInteger)hash {
@@ -79,6 +75,23 @@
     }
     
     return self.type == object.type && [self.contents isEqual:object.contents];
+}
+
+- (id)resourceValueForKey:(NSString *)key {
+    return [self resourceValuesForKeys:@[ key ]][key];
+}
+
+- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys {
+    NSArray * newKeys;
+    NSMutableDictionary * values = [[self.cachedResourceValues subdictionaryWithKeys:keys notFoundKeys:&newKeys] mutableCopy];
+    
+    if(newKeys.count) {
+        NSDictionary * newValues = [self.resourceValues resourceValuesForKeys:newKeys];
+        [self.cachedResourceValues addEntriesFromDictionary:newValues];
+        [values addEntriesFromDictionary:newValues];
+    }
+    
+    return values;
 }
 
 @end

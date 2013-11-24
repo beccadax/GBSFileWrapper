@@ -16,6 +16,7 @@ typedef NS_ENUM(NSUInteger, GBSFileWrapperType) {
 };
 
 @protocol GBSFileWrapperDataSource;
+@protocol GBSFileWrapperResourceValues;
 @protocol GBSFileWrapperContents;
 
 @class GBSFileWrapper;

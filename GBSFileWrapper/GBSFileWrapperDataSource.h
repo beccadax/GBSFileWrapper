@@ -18,18 +18,25 @@
 - (NSURL*)symbolicLinkContentsForFileWrapper:(GBSFileWrapper*)fileWrapper;
 - (NSDictionary*)directoryContentsForFileWrapper:(GBSFileWrapper*)fileWrapper;
 
-- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys error:(NSError **)error;
-
+/// Returns a copy of the data source that can be independently mutated.
 - (id <GBSFileWrapperDataSource>)copyFromFileWrapper:(GBSFileWrapper*)fileWrapper;
 
 - (void)setNilContentsForFileWrapper:(GBSFileWrapper*)fileWrapper;
 - (void)setRegularFileContents:(NSData*)contents forFileWrapper:(GBSFileWrapper*)fileWrapper;
 - (void)setSymbolicLinkContents:(NSURL*)contents forFileWrapper:(GBSFileWrapper*)fileWrapper;
 
+/// Called before calling -addDirectoryContents: or -removeAllDirectoryContents. If the data source does not already represent a directory, it should turn itself into an empty directory.
 - (void)makeDirectoryContentsForFileWrapper:(GBSFileWrapper*)fileWrapper;
+/// Adds, updates, or removes child file wrappers. A null value indicates that the corresponding key should be removed.
 - (void)addDirectoryContents:(NSDictionary*)dictionaryOfNamesAndFileWrappersOrNulls;
+/// Removes all child file wrappers from the directory.
 - (void)removeAllDirectoryContents;
 
-- (void)updateResourceValues:(NSDictionary*)values forFileWrapper:(GBSFileWrapper*)fileWrapper;
+@end
+
+@protocol GBSFileWrapperResourceValues <NSObject>
+
+- (id <GBSFileWrapperResourceValues>)copyFromFileWrapper:(GBSFileWrapper*)fileWrapper;
+- (NSDictionary*)resourceValuesForKeys:(NSArray*)keys;
 
 @end

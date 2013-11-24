@@ -14,9 +14,10 @@
 @interface GBSFileWrapper : NSObject <NSCopying, NSMutableCopying>
 
 // Designated initializer
-- (id)initWithDataSource:(id <GBSFileWrapperDataSource>)dataSource;
+- (id)initWithDataSource:(id <GBSFileWrapperDataSource>)dataSource resourceValues:(id <GBSFileWrapperResourceValues>)resourceValues;
 
 @property (readonly) id <GBSFileWrapperDataSource> dataSource;
+@property (readonly) id <GBSFileWrapperResourceValues> resourceValues;
 
 // Only call this to replace the data source with one that represents the exact same data.
 // It will not trigger KVO notifications for `type` or `contents`!
@@ -25,11 +26,11 @@
 @property (readonly) GBSFileWrapperType type;
 @property (readonly) id /*<GBSFileWrapperContents>*/ contents;
 
-- (BOOL)getResourceValue:(out id *)value forKey:(NSString *)key error:(out NSError **)error;
-- (NSDictionary *)resourceValuesForKeys:(NSArray *)keys error:(NSError **)error;
-
 - (NSUInteger)hash;
 - (BOOL)isEqual:(id)object;
+
+- (id)resourceValueForKey:(NSString*)key;
+- (NSDictionary*)resourceValuesForKeys:(NSArray*)keys;
 
 @end
 
