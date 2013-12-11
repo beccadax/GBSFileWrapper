@@ -11,6 +11,8 @@
 #import "GBSFileWrapperDefines.h"
 #import "NSFileSecurity+GBSExtensions.h"
 
+@class GBSMutableFileWrapper;
+
 @interface GBSFileWrapper : NSObject <NSCopying, NSMutableCopying>
 
 // Designated initializer
@@ -31,6 +33,8 @@
 
 - (id)resourceValueForKey:(NSString*)key;
 - (NSDictionary*)resourceValuesForKeys:(NSArray*)keys;
+
+- (GBSMutableFileWrapper*)recursiveMutableCopy;
 
 @end
 
