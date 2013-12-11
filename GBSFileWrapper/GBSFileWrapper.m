@@ -94,4 +94,18 @@
     return values;
 }
 
+- (GBSMutableFileWrapper*)recursiveMutableCopy {
+    if(self.type != GBSFileWrapperTypeDirectory) {
+        return [self mutableCopy];
+    }
+    
+    GBSMutableFileWrapper * copy = [[GBSMutableFileWrapper alloc] initWithContents:@{} resourceValues:self.resourceValues];
+    
+    for(NSString * name in self.contents) {
+        [copy setContentsChildFileWrapper:[self.contents[name] recursiveMutableCopy] forName:name];
+    }
+    
+    return copy;
+}
+
 @end

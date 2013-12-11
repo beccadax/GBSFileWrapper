@@ -96,4 +96,20 @@
     XCTAssertNotEqualObjects(fileAMutableCopy, fileAMutableCopyMutableCopy, @"GBSMutableFileWrapper not equals mutable copy of itself after mutation");
 }
 
+- (void)testRecursiveMutableCopy {
+    GBSFileWrapper * file = [[GBSFileWrapper alloc] initWithContents:[NSData data] resourceValues:nil];
+    GBSFileWrapper * dir = [[GBSFileWrapper alloc] initWithContents:@{ @"file": file } resourceValues:nil];
+    GBSFileWrapper * root = [[GBSFileWrapper alloc] initWithContents:@{ @"dir": dir, @"file": file } resourceValues:nil];
+    
+    GBSMutableFileWrapper * copy = [root recursiveMutableCopy];
+    
+    XCTAssertEqualObjects(root, copy, @"Copy compares equal to original");
+    XCTAssertNotEqual(root, copy, @"...but it is a separate instance");
+    
+    XCTAssert([copy isKindOfClass:GBSMutableFileWrapper.class], @"Copy is mutable");
+    XCTAssert([copy.contents[@"file"] isKindOfClass:GBSMutableFileWrapper.class], @"So is its file...");
+    XCTAssert([copy.contents[@"dir"] isKindOfClass:GBSMutableFileWrapper.class], @"And its directory...");
+    XCTAssert([[copy.contents[@"dir"] contents][@"file"] isKindOfClass:GBSMutableFileWrapper.class], @"And the file inside its directory.");
+}
+
 @end

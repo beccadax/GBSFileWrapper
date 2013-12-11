@@ -101,9 +101,8 @@
 
 @implementation GBSFileWrapperMemoryMutableDataSource
 
-- (id)initWithContents:(id<GBSFileWrapperContents>)contents resourceValues:(NSDictionary *)resourceValues {
+- (id)initWithContents:(id<GBSFileWrapperContents>)contents {
     contents = [contents typeForFileWrapper:nil] == GBSFileWrapperTypeDirectory ? [(id)contents mutableCopy] : contents;
-    resourceValues = [resourceValues mutableCopy];
     
     return [super initWithContents:contents];
 }
